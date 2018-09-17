@@ -1,0 +1,23 @@
+{
+  "name": "echo",
+  "version": "1.0.0",
+  "description": "Class project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobotnewRobot/Echo.git"
+  },
+  "author": "Braydon Hanson Jiayu Gao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobotnewRobot/Echo/issues"
+  },
+  "homepage": "https://github.com/RobotnewRobot/Echo#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "pug": "^2.0.3"
+  }
+}
