@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+    head
+        script(type='text/javascript' src='frontend-js/Login.js')
+        title Login
+    body
+        form( name='loginForm',action='LoginHandler',method ='post' onsubmit="return validateForm()")
+            p user name
+            input#username(type='text', name='username' )
+            p password
+            input#password(type='password', name='password' )
+            br
+            input(type='submit' value='Submit')
