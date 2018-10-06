@@ -1,28 +1,59 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
+var exports = module.exports = {};
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";//removed mudb here
 
-MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-    console.log("Database created!");
-    return db;
-});
-isManagerLoginSuccess("good", 'morning');
-function isManagerLoginSuccess(username, managerPassword) {
-    return MongoClient.connect(url, function (err, db) {
+
+exports.LoginCheck = function (username, password, callback) {
+    //might be future securities risk of using var
+    var managerLogin = false;
+    var displayLogin = false;
+    MongoClient.connect(url, {useNewUrlParser: true}, async function (err, db) {
         if (err) throw err;
-        console.log("Database created!");
-        let dbo = db.db("mydb");
-        let query = {
-            username: username,
-            managerPassword: managerPassword
-        };
-        let r=dbo.collection("user").find(query).toArray(function (err, result) {
-            if (err) throw err;
-            console.log(result);
-            db.close();
-            return result;
-        })
-    if (r.rowsAffected>0) return false;
-    else return true;
+        let dbo = db.db("mydb");//Base on database name
+        let queryManager = {username: username, managerPassword: password};//{$and: [{username: username}, {managerPassword: password}]};
+        let queryDisplay = {username: username, displayPassword: password};
+
+        try {
+            managerLogin = await queryUser(dbo, queryManager);
+
+            displayLogin = await queryUser(dbo, queryDisplay);
+
+            callback(err, managerLogin, displayLogin);
+
+        } catch (e) {
+            callback(e, managerLogin, displayLogin);
+        }
+        db.close();
+    })
+
+
+}
+
+function queryUser(dbo, query) {
+    return new Promise(function (resolve, reject) {
+        dbo.collection("user").find(query).count(function (err, result) {
+            if (err) reject(err);
+            else if (result > 0) {
+                console.log(result);
+                resolve(true);
+            }
+            else resolve(false);
+        });
     });
 }
+
+
+/*
+        dbo.collection("user").find(queryManager).count(function (err, result) {
+            if (err) throw err;
+            if (result > 0) managerLogin = true;
+            console.log(result);
+            console.log(managerLogin);
+
+        });
+
+        dbo.collection("user").find(queryDisplay, function (err, result) {
+            if (err) throw err;
+            if (result.rowsAffected > 0) displayLogin = true;
+        });
+        */

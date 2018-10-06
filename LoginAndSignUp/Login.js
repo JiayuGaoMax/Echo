@@ -2,10 +2,11 @@
 let express = require('express');
 let app = module.exports = express();
 let path = require('path');
-let bodyParser=require('body-parser');
+let bodyParser = require('body-parser');
+let dba = require("./modules/LoginModule.js");
 
 //body parser set up
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 //view engine set up
@@ -15,14 +16,28 @@ app.use(express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
 
 //Get login request from user render the login page
-app.get('/Login', function(req, res){
+app.get('/Login', function (req, res) {
     console.log("User In the login function");
-  res.render('Login');
+    res.render('Login');
 });
 //Get login post from user and post the request
-app.post('/LoginHandler', function(req, res){
-    let user_name=req.body.username;
-    let password=req.body.password;
-    console.log("User name = "+user_name+", password is "+password);
+app.post('/LoginHandler', function (req, res) {
+    let user_name = req.body.username;
+    let password = req.body.password;
+    dba.LoginCheck(user_name, password, function (err, manager, display) {
+        if (err) throw err;
+        else if (manager) {
+
+            console.log("Manager is login do something here ");
+        } else if (display) {
+            console.log("Display login do something here");
+        }
+        else {
+
+            console.log("Login fail, ");
+            res.redirect("/Login");
+        }
+    })
+    console.log("User name = " + user_name + ", password is " + password);
     res.end("yes");
 });
