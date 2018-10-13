@@ -1,7 +1,9 @@
-var express = require('express');
-var app = express();
-var login = require('./LoginAndSignUp/Login.js');
+let express = require('express');
+let app = express();
+let login = require('./LoginAndSignUp/Login.js');
 app.use(login);
+let manager = require('./Manager/Manager.js');
+app.use(manager);
 
 app.get('/', function (req, res) {
     res.send("rood dir");
