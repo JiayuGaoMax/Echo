@@ -42,6 +42,6 @@ app.post('/LoginHandler', function (req, res) {
             console.log("Login fail, ");
             res.redirect("/Login");
         }
-    })
+    });
     console.log("User name = " + user_name + ", password is " + password);
 });

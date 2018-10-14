@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+    head
+        title Sign Up
+    body
+        div
+            form(name='SignUpForm', action='SignUpHandler', method ='post' id='SignUpForm')
+                div(class='input')
+                    label(for='username') Username (must be 4 characters long)
+                    br
+                    input(type='text' name='username' id='username' autofocus)
+                    span(id='usernameError')
+                div(class='input')
+                    label(for='managerPassword') Password (must be 4 character long)
+                    br
+                    input(type='password' name='managerPassword' id='managerPassword')
+                    span(id='managerPasswordError')
+                div(class='input')
+                    label(for='confirmManagerPassword') Confirm Password
+                    br
+                    input(type='password' name='confirmManagerPassword' id='confirmManagerPassword')
+                    span(id='confirmManagerPasswordError')
+                div(class='input')
+                    label(for='displayPassword') Display Password (This password is used to login to display screen)
+                    br
+                    input(type='password' name='displayPassword' id='displayPassword')
+                    span(id='displayPasswordError')
+                div(class='input')
+                    label(for='confirmDisplayPassword') Confirm Display Password
+                    br
+                    input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword')
+                    span(id='confirmDisplayPasswordError')
+                br
+                span(id='formError')
+                input(type='submit' value='Sign Up')
+
+        script(type='text/javascript' src='frontend-js/SignUpValidation.js')

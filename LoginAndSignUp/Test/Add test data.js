@@ -1,9 +1,9 @@
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";
+let url = "mongodb://localhost:27017/Echo";
 
 MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
     if (err) throw err;
-    let dbo = db.db("mydb");
+    let dbo = db.db("Echo");
     let myobj = {username: "Max", managerPassword: "1234"};
     dbo.collection("user").insertOne(myobj, function (err, res) {
         if (err) throw err;
