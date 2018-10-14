@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";//removed mudb here
+let url = "mongodb://localhost:27017/";//removed mydb here
 
 
 exports.LoginCheck = function (username, password, callback) {
@@ -9,7 +9,7 @@ exports.LoginCheck = function (username, password, callback) {
     var displayLogin = false;
     MongoClient.connect(url, {useNewUrlParser: true}, async function (err, db) {
         if (err) throw err;
-        let dbo = db.db("mydb");//Base on database name
+        let dbo = db.db("Echo");//Base on database name
         let queryManager = {username: username, managerPassword: password};//{$and: [{username: username}, {managerPassword: password}]};
         let queryDisplay = {username: username, displayPassword: password};
 
@@ -27,11 +27,11 @@ exports.LoginCheck = function (username, password, callback) {
     })
 
 
-}
+};
 
 function queryUser(dbo, query) {
     return new Promise(function (resolve, reject) {
-        dbo.collection("user").find(query).count(function (err, result) {
+        dbo.collection("users").find(query).count(function (err, result) {
             if (err) reject(err);
             else if (result > 0) {
                 console.log(result);
