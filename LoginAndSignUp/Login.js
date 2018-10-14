@@ -4,10 +4,13 @@ let app = module.exports = express();
 let path = require('path');
 let bodyParser = require('body-parser');
 let dba = require("./modules/LoginModule.js");
+let session = require('express-session');
+
 
 //body parser set up
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true, cookie: {maxAge: 60000}}));
 
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
@@ -27,8 +30,10 @@ app.post('/LoginHandler', function (req, res) {
     dba.LoginCheck(user_name, password, function (err, manager, display) {
         if (err) throw err;
         else if (manager) {
-
+            req.session.username = user_name;//test
+            req.session.isLoginedIn = true;//test
             console.log("Manager is login do something here ");
+            res.redirect("/ManagerDashboard");//test for session
         } else if (display) {
             console.log("Display login do something here");
         }
@@ -39,5 +44,4 @@ app.post('/LoginHandler', function (req, res) {
         }
     });
     console.log("User name = " + user_name + ", password is " + password);
-    res.end("yes");
 });

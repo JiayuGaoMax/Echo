@@ -10,5 +10,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="@types/express" level="application" />
     <orderEntry type="library" name="@types/pug" level="application" />
+    <orderEntry type="library" name="@types/express" level="application" />
+    <orderEntry type="library" name="@types/pug" level="application" />
+    <orderEntry type="library" name="@types/serve-static" level="application" />
+    <orderEntry type="library" name="@types/express-serve-static-core" level="application" />
   </component>
 </module>

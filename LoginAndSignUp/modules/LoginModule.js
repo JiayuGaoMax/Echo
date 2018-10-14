@@ -37,7 +37,7 @@ function queryUser(dbo, query) {
                 console.log(result);
                 resolve(true);
             }
-            else resolve(false);
+            else reject(false);
         });
     });
 }
