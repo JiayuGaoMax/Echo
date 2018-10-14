@@ -1,6 +1,6 @@
 exports = module.exports = {};
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";//removed  here
+let url = "mongodb+srv://Shared:1q2w3e4r.@cluster0-urxdu.mongodb.net";//removed  here
 
 
 exports.queryDisplayGroups = function (queryName) {

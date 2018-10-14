@@ -6,7 +6,6 @@ let SignUp = require('./LoginAndSignUp/SignUp.js');
 app.use(SignUp);
 let manager = require('./Manager/Manager.js');
 app.use(manager);
-
 app.get('/', function (req, res) {
     res.send("root dir");
 });

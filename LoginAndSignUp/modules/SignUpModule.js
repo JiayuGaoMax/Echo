@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";
+let url = "mongodb+srv://Shared:1q2w3e4r.@cluster0-urxdu.mongodb.net";
 
 exports.AddUser = function(username, managerPassword, displayPassword, callback) {
     MongoClient.connect(url, {useNewUrlParser: true}, async function (err, db) {

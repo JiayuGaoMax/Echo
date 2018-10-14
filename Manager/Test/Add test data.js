@@ -1,5 +1,5 @@
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";
+let url = "mongodb+srv://Shared:1q2w3e4r.@cluster0-urxdu.mongodb.net";
 
 MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
     if (err) throw err;

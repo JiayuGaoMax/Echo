@@ -1,6 +1,6 @@
 var exports = module.exports = {};
 let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";//removed mydb here
+let url = "mongodb+srv://Shared:1q2w3e4r.@cluster0-urxdu.mongodb.net";//removed mydb here
 
 
 exports.LoginCheck = function (username, password, callback) {
