@@ -24,8 +24,6 @@ form.signUp.addEventListener("submit", validateForm);
 
 
 function validateForm(e) {
-    e.preventDefault();
-
     let msg1 = "";
     let msg2 = "";
     let msg3 = "";

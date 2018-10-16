@@ -1,0 +1,20 @@
+doctype html
+html(lang='en')
+    head
+        title Manager
+    body
+        div
+            h1 Displays
+            form(name='displayForm' action="Manager" method="get")
+                div(style="width:500px; height:500px;border:1px solid grey;")
+                    ul(style="list-style-type:none")
+                        each n in json
+                            li
+                                a(href="EditDisplay") #{n.displayGroupName}
+                        else
+                            li No Displays
+                        a(href="EditDisplay")
+                            li test
+
+                input(type="text" name="addDisplay" placeholder="Add Display" id="addDisplay")
+                input(type="submit" value="Add Display")
