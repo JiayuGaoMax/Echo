@@ -42,3 +42,21 @@ exports.addGroup = function (userName, displayGroupName) {
 
 }
 
+exports.queryDisplayGroupID = function (queryName,displayGroupName) {
+    let query = {username: queryName,displayGroupName:displayGroupName};
+    return new Promise(function (resolve, reject) {
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("displayGroup").findOne(query, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve(result._id);
+            })
+            db.close();
+        });
+
+    });
+}
+
