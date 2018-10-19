@@ -1,6 +1,6 @@
 let express = require('express');
 let app = module.exports = express();
-let ManagerDashoard = require('./ManagerDashboard.js');
-app.use(ManagerDashoard);
+let ManagerDashboard = require('./ManagerDashboard.js');
+app.use(ManagerDashboard);
 let EditDisplay = require('./EditDisplay.js');
 app.use(EditDisplay);

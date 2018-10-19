@@ -12,10 +12,12 @@ exports.queryDisplayGroups = function (queryName) {
             dbo.collection("displayGroup").find(query).toArray(function (err, result) {
                 if (err)
                     reject(err);
-                else
+                else {
                     resolve(result);
+                    db.close();
+                }
             })
-            db.close();
+
         });
 
     });
@@ -28,13 +30,16 @@ exports.addGroup = function (userName, displayGroupName) {
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
             let dbo = db.db("Echo");
-            dbo.collection("displayGroup").insertOne(query,function (err) {
+            dbo.collection("displayGroup").insertOne(query, function (err) {
                 if (err)
                     reject(err);
-                else
+                else {
                     resolve("Insert " + query + " successfully");
+                    db.close();
+                }
+
             })
-            db.close();
+
         });
 
     });
@@ -42,8 +47,8 @@ exports.addGroup = function (userName, displayGroupName) {
 
 }
 
-exports.queryDisplayGroupID = function (queryName,displayGroupName) {
-    let query = {username: queryName,displayGroupName:displayGroupName};
+exports.queryDisplayGroupID = function (queryName, displayGroupName) {
+    let query = {username: queryName, displayGroupName: displayGroupName};
     return new Promise(function (resolve, reject) {
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
