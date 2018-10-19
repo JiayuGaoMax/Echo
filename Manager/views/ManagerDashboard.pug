@@ -10,7 +10,7 @@ html(lang='en')
                     ul(style="list-style-type:none")
                         each n in json
                             li
-                                a(href="EditDisplay") #{n.displayGroupName}
+                                a(href="EditDisplay/?groupID="+n._id) #{n.displayGroupName}
                         else
                             li No Displays
                         a(href="EditDisplay")
