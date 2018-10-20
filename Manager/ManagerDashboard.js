@@ -22,6 +22,7 @@ app.get('/ManagerDashboard', async function (req, res) {
     //await dba.addGroup("Max","Test"); This function could add a group to database
     //var id = await dba.queryDisplayGroupID("Max", "Haha"); //This function get user name and display group name and return ID
     result = await dba.queryDisplayGroups(req.session.username);
+
     //console.log(id);
     //res.send(result);
 

@@ -3,9 +3,9 @@ let MongoClient = require('mongodb').MongoClient;
 let ObjectId = require('mongodb').ObjectID;
 let url = "mongodb+srv://Shared:1q2w3e4r.@cluster0-urxdu.mongodb.net";//removed  here
 
-exports.addOneImageInfoToDatabase = function (displayGroupID, path) {
+exports.addOneImageInfoToDatabase = function (displayGroupID, path,imgName) {
     return new Promise(function (resolve, reject) {
-        let query = {displayGroupID: displayGroupID, imagePath: path}
+        let query = {displayGroupID: displayGroupID, imagePath: path,imageName:imgName};
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
             let dbo = db.db("Echo");
@@ -80,4 +80,22 @@ exports.deleteOneImageInDatabase = function (imageID) {
 
         })
     })
+}
+
+exports.queryDisplayGroupNameByID = function (displayGrouID) {
+    let query = {_id: ObjectId(displayGrouID)};
+    return new Promise(function (resolve, reject) {
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("displayGroup").findOne(query, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve(result.displayGroupName);
+            })
+            db.close();
+        });
+
+    });
 }
