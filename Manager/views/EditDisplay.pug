@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+    head
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css")
+        script(type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js")
+        title Edit Display
+    body
+        div
+            h1 #{groupName}
+            form(action="/upLoadImageHandler?groupID="+groupID name="userPhoto" method="post" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data")
+                div(class="fallback")
+                    input(name="userPhoto" type="file" multiple)
+
+            form(action="")
+                input(type="checkbox" name="selectAll")
+                span Select All
+                input(type="button" value="Set Duration")
+                input(type="button" value="Remove Selected")
+
+            ul(style="list-style-type:none")
+                each n in images
+                    li
+                        img(src="/userUpload/"+imagePath.basename(images[0].imagePath) alt="" style="width:150px;height=150px;")
+                        form(action="")
+                            span Start Time:
+                            input(type="time" name="imageStartTime")
+                            span End Time:
+                            input(type="time" name="imageEndTime")
+                            span Duration (seconds):
+                            input(type="number" name="imageDuration" placeholder="Image Duration" min="0")
+                            input(type="submit" value="Update")
+                else
+                    li No Images

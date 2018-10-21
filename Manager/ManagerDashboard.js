@@ -9,11 +9,6 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
 
-//app.get('/Manager', async function (req, res) {
-//    console.log("User In the Manager function");
-//    res.render('Manager');
-//});
-
 //Get Manager request from user render the Manager page
 app.get('/ManagerDashboard', async function (req, res) {
     console.log("User In the Manager function");
@@ -26,5 +21,11 @@ app.get('/ManagerDashboard', async function (req, res) {
     //console.log(id);
     //res.send(result);
 
-    res.render('ManagerDashboard', {ManagerDashboard: 'ManagerDashboard', json: result});
+    res.render('ManagerDashboard', {ManagerDashboard: 'ManagerDashboard', displayName: result});
+});
+
+app.post('/addDisplayGroup', function (req, res) {
+    let displayName = req.body.addDisplay;
+
+    dba.addGroup(req.session.username, displayName);
 });

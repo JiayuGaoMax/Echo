@@ -6,6 +6,7 @@ let url = "mongodb+srv://Shared:1q2w3e4r.@cluster0-urxdu.mongodb.net";//removed 
 exports.addOneImageInfoToDatabase = function (displayGroupID, path,imgName) {
     return new Promise(function (resolve, reject) {
         let query = {displayGroupID: displayGroupID, imagePath: path,imageName:imgName};
+        //let query = {displayGroupID: displayGroupID, imagePath: path};
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
             let dbo = db.db("Echo");
@@ -22,12 +23,12 @@ exports.addOneImageInfoToDatabase = function (displayGroupID, path,imgName) {
         })
 
     })
-}
+};
 
 
 exports.queryAllImages = function (displayGroupID) {
     return new Promise(function (resolve, reject) {
-        let query = {displayGroupID: displayGroupID}
+        let query = {displayGroupID: displayGroupID};
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
             let dbo = db.db("Echo");
@@ -43,7 +44,7 @@ exports.queryAllImages = function (displayGroupID) {
         })
 
     })
-}
+};
 
 
 //Two delete function  be tested
@@ -63,7 +64,7 @@ exports.deleteAllImagesInDatabase = function (displayGroupID) {
 
         })
     })
-}
+};
 
 exports.deleteOneImageInDatabase = function (imageID) {
     return new Promise(function (resolve, reject) {
@@ -80,10 +81,10 @@ exports.deleteOneImageInDatabase = function (imageID) {
 
         })
     })
-}
+};
 
-exports.queryDisplayGroupNameByID = function (displayGrouID) {
-    let query = {_id: ObjectId(displayGrouID)};
+exports.queryDisplayGroupNameByID = function (displayGroupID) {
+    let query = {_id: ObjectId(displayGroupID)};
     return new Promise(function (resolve, reject) {
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
@@ -93,9 +94,9 @@ exports.queryDisplayGroupNameByID = function (displayGrouID) {
                     reject(err);
                 else
                     resolve(result.displayGroupName);
-            })
+            });
             db.close();
         });
 
     });
-}
+};

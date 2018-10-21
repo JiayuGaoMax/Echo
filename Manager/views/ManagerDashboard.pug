@@ -5,16 +5,13 @@ html(lang='en')
     body
         div
             h1 Displays
-            form(name='displayForm' action="Manager" method="get")
-                div(style="width:500px; height:500px;border:1px solid grey;")
-                    ul(style="list-style-type:none")
-                        each n in json
-                            li
-                                a(href="EditDisplay/?groupID="+n._id) #{n.displayGroupName}
-                        else
-                            li No Displays
-                        a(href="EditDisplay")
-                            li test
-
+            div(style="width:500px; height:500px;border:1px solid grey;")
+                ul(style="list-style-type:none")
+                    each n in displayName
+                        li
+                            a(href="EditDisplay/?groupID="+n._id) #{n.displayGroupName}
+                    else
+                        li No Displays
+            form(name='displayForm' action="/addDisplayGroup" method="post")
                 input(type="text" name="addDisplay" placeholder="Add Display" id="addDisplay")
                 input(type="submit" value="Add Display")
