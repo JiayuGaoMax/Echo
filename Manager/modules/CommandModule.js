@@ -31,4 +31,47 @@ exports.addDefaultCommand = function (imageName) {
 
     })
 }
+//To Be tested
+exports.updateCommand = function (imageName, hourStart, minutesStart, hourEnd, minutesEnd) {
+    return new Promise(function (resolve, reject) {
+        let query = {imageName: imageName};
+        let newValue = {
+            $set: {
+                hourStart: hourStart,
+                minuteStart: minutesStart,
+                hourEnd: hourEnd,
+                minutesEnd: minutesEnd
+            }
+        };
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("command").updateOne(query, newValue, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve("New State is now set to" + newState);
+            })
+            db.close();
+        });
 
+    });
+}
+
+exports.deleteCommand = function (imageName) {
+    return new Promise(function (resolve, reject) {
+        let query = {imageName: imageName};
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("command").deleteOne(query, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve(result.result.n + "command was deleted");
+            })
+            db.close();
+        });
+
+    });
+}

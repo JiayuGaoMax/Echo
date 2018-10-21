@@ -2,8 +2,9 @@ let express = require('express');
 let app = module.exports = express();
 let path = require('path');
 let multer = require('multer');
-let dba = require("../modules/imageModule.js");
-let dbb = require("../modules/CommandModule.js");
+let dba = require("../modules/ImageModule.js");
+let dbb = require("../modules/CommandModule.js")
+
 const fs = require("fs");
 
 //file uploader configuration
@@ -18,15 +19,14 @@ let storageConfig = multer.diskStorage({
 });
 
 let upload = multer({storage: storageConfig}).array("file", 10);
-app.use(express.static( "public"));
+app.use(express.static("public"));
 //end file uploader config
 
 
 //This handles the user drag and drop upload request
 app.post("/upLoadImageHandler", function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to manage
-    console.log("upload handler");
-    upload(req, res, function (err) {// The maximum number of uploading is 10 don't go over that.
+    upload(req, res, async function (err) {// The maximum number of uploading is 10 don't go over that.
         if (err instanceof multer.MulterError) {
             console.log(err);
         }
@@ -43,3 +43,21 @@ app.post("/upLoadImageHandler", function (req, res) {
     })
 
 });
+app.get("/deleteAllImageHandler", async function (req, res) {
+    let groupID = req.query.groupID;
+    let allImageMame = await dba.queryAllImageNames(groupID);
+    for (let imageName of allImageMame) {
+        dbb.deleteCommand(imageName.imageName);//Delete commands before deleting images
+        console.log(imageName.imageName);
+    }
+    dba.deleteAllImagesInDisplayGroup(groupID);
+    res.send("Delete finished");
+
+})
+
+app.get("/deleteOneImageHandler", async function (req, res) {
+    let imageID = req.query.ImageID;
+    await dba.deleteOneImageInDatabase(imageID);
+    res.send("Delete finished");
+
+})

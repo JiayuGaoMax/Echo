@@ -12,20 +12,18 @@ app.use(express.static(path.join(__dirname, "public")));
 //Get Manager request from user render the Manager page
 app.get('/ManagerDashboard', async function (req, res) {
     console.log("User In the Manager function");
-
     let result;
     //await dba.addGroup("Max","Test"); This function could add a group to database
     //var id = await dba.queryDisplayGroupID("Max", "Haha"); //This function get user name and display group name and return ID
     result = await dba.queryDisplayGroups(req.session.username);
-
     //console.log(id);
     //res.send(result);
 
     res.render('ManagerDashboard', {ManagerDashboard: 'ManagerDashboard', displayName: result});
 });
 
-app.post('/addDisplayGroup', function (req, res) {
+app.post('/addDisplayGroup', async function (req, res) {
     let displayName = req.body.addDisplay;
-
-    dba.addGroup(req.session.username, displayName);
+    await dba.addGroup(req.session.username, displayName);
+    res.redirect("/ManagerDashboard")
 });
