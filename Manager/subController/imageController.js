@@ -39,6 +39,7 @@ app.post("/upLoadImageHandler", function (req, res) {
                 dba.addOneImageInfoToDatabase(groupID, image.path, image.filename);// This function take a display group ID and image path store in the database
                 dbb.addDefaultCommand(image.filename)// If each image uploaded will be add a default command
             }
+            res.send("Upload Finished");
         }
     })
 

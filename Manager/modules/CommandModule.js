@@ -75,3 +75,35 @@ exports.deleteCommand = function (imageName) {
 
     });
 }
+
+
+exports.queryAllImageCommand = function (groupID) {
+    return new Promise(function (resolve, reject) {
+        let query = [{
+            $match:
+                {
+                    displayGroupID: groupID
+                }
+        }
+              ,
+              {
+                  $lookup: {
+                      from: 'command',
+                      localField: 'imageName',
+                      foreignField: 'imageName',
+                      as: 'imageCommand'
+                  }
+              }];
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db('Echo');
+            dbo.collection('images').aggregate(query).toArray(function (err, result) {
+                if (err) reject(err);
+                else resolve(result);
+                db.close();
+
+            })
+
+        })
+    })
+}

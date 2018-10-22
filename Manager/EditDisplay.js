@@ -4,13 +4,15 @@ let dba = require("./modules/ImageModule.js");
 let dbb = require("./modules/CommandModule.js");
 let imgCtrl = require("./subController/imageController.js");//Because this page is complex, need to spite into several sub controller
 app.use(imgCtrl);
+let cmdCtrl = require("./subController/commandController");//Because this page is complex, need to spite into several sub controller
+app.use(cmdCtrl);
 path = require("path");
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
 app.set('view engine', 'pug');
+app.use("/EditDisplay",express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
-
-app.use(express.static("public"));
+//app.use(express.static("public"));
 //end file uploader config
 
 app.get('/EditDisplay', async function (req, res) {
