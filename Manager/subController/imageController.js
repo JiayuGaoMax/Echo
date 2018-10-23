@@ -57,8 +57,8 @@ app.post("/deleteAllImageHandler", async function (req, res) {
 
 app.post("/deleteOneImageHandler", async function (req, res) {
     let groupID = req.query.groupID;
-    let imageName = req.query.imageName;
-    console.log(imageName);
-    await dba.deleteOneImageInDatabase(imageName);
+    let imageID = req.query.imageID;
+    console.log(imageID);
+    await dba.deleteOneImageInDatabase(imageID);
     res.redirect("/EditDisplay?groupID=" + groupID);
 });

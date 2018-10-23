@@ -16,14 +16,14 @@ html(lang='en')
                 ul(style="list-style-type:none")
                     each image in images
                         li
-                            img(src="/userUpload/" + imagePath.basename(image.imagePath) alt="" style="width:150px;height=150px;")
+                            img(src="/userUpload/" + imagePath.basename(image.imagePath) alt=image.imageName style="width:150px;height=150px;")
                             span Start Time:
                             input(type="time" name="imageStartTime" value="00:00")
                             span End Time:
                             input(type="time" name="imageEndTime" value="23:59")
                             span Duration (seconds):
                             input(type="number" name="imageDuration" value="0" min="0")
-                            button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageName=" + image.imageName) Delete Image
+                            button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id) Delete Image
 
                     else
                         li No Images
