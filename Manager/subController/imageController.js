@@ -44,21 +44,21 @@ app.post("/upLoadImageHandler", function (req, res) {
     })
 
 });
-app.get("/deleteAllImageHandler", async function (req, res) {
+app.post("/deleteAllImageHandler", async function (req, res) {
     let groupID = req.query.groupID;
-    let allImageMame = await dba.queryAllImageNames(groupID);
-    for (let imageName of allImageMame) {
+    let allImageName = await dba.queryAllImageNames(groupID);
+    for (let imageName of allImageName) {
         dbb.deleteCommand(imageName.imageName);//Delete commands before deleting images
         console.log(imageName.imageName);
     }
     dba.deleteAllImagesInDisplayGroup(groupID);
-    res.send("Delete finished");
+    res.redirect("/EditDisplay?groupID=" + groupID);
+});
 
-})
-
-app.get("/deleteOneImageHandler", async function (req, res) {
-    let imageID = req.query.ImageID;
-    await dba.deleteOneImageInDatabase(imageID);
-    res.send("Delete finished");
-
-})
+app.post("/deleteOneImageHandler", async function (req, res) {
+    let groupID = req.query.groupID;
+    let imageName = req.query.imageName;
+    console.log(imageName);
+    await dba.deleteOneImageInDatabase(imageName);
+    res.redirect("/EditDisplay?groupID=" + groupID);
+});

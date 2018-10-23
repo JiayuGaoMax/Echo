@@ -19,7 +19,6 @@ app.get('/EditDisplay', async function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to manage
     let displayGroupName = await dba.queryDisplayGroupNameByID(groupID);
     let images = await dba.queryAllImages(groupID);
-    console.log(images);
     console.log(groupID);
     res.render('EditDisplay', {
         EditDisplay: 'EditDisplay',
@@ -30,16 +29,15 @@ app.get('/EditDisplay', async function (req, res) {
     });
 });
 
-
 ///Test function a re here
 app.get('/deleteOneImage', function (req, res) {
     console.log(dba.deleteOneImageInDatabase("5bcbcb1c55e1b91fa094ffcc"));//Deleted successful
 });
 
 app.get('/TestChangeState', async function (req, res) {
-    let newstate = await dba.updateDisplayGroupState("5bcbaea27a56983a1414f27f")
+    let newstate = await dba.updateDisplayGroupState("5bcbaea27a56983a1414f27f");
     res.send(newstate);
-})
+});
 app.get("/testImages", async function (req, res) {
     let images = await dba.queryAllImages(1234);
     // console.log(images);
