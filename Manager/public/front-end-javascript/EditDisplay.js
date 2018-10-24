@@ -5,7 +5,6 @@ Dropzone.options.myAwesomeDropzone = {
     maxFiles: 10,
     init: function () {
         this.on("success", function (file, response) {
-            alert(response);
             location.reload();//reload after success
         });
     }

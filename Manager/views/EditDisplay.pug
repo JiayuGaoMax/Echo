@@ -24,7 +24,7 @@ html(lang='en')
                             input(type="time" name="imageEndTime" value="23:59")
                             span Duration (seconds):
                             input(type="number" name="imageDuration" value="0" min="0")
-                            button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id) Delete Image
+                            button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id+"&imageName="+imagePath.basename(image.imagePath)) Delete Image
 
                     else
                         li No Images

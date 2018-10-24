@@ -39,7 +39,8 @@ app.post("/upLoadImageHandler", function (req, res) {
                 dba.addOneImageInfoToDatabase(groupID, image.path, image.filename);// This function take a display group ID and image path store in the database
                 dbb.addDefaultCommand(image.filename)// If each image uploaded will be add a default command
             }
-            res.send("Upload Finished");
+            res.send("success");
+            dba.updateDisplayGroupState(groupID);//Update display group ID
         }
     })
 
@@ -52,6 +53,7 @@ app.post("/deleteAllImageHandler", async function (req, res) {
         console.log(imageName.imageName);
     }
     dba.deleteAllImagesInDisplayGroup(groupID);
+    dba.updateDisplayGroupState(groupID);//Update display group ID
     res.redirect("/EditDisplay?groupID=" + groupID);
 });
 
@@ -59,7 +61,10 @@ app.post("/deleteAllImageHandler", async function (req, res) {
 app.post("/deleteOneImageHandler", async function (req, res) {
     let groupID = req.query.groupID;
     let imageID = req.query.imageID;
+    let imageName= req.query.imageName;
     console.log(imageID);
     await dba.deleteOneImageInDatabase(imageID);
+    dba.updateDisplayGroupState(groupID);//Update display group ID
+    dbb.deleteCommand(imageName);// We need to do this to remove the command in the database
     res.redirect("/EditDisplay?groupID=" + groupID);
 });

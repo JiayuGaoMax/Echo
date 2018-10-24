@@ -107,3 +107,23 @@ exports.queryAllImageCommand = function (groupID) {
         })
     })
 }
+
+exports.updateDisplayGroupStateAfterCommandChange = function (displayGroupID) {
+    let query = {_id: ObjectId(displayGroupID)};
+    let newState = Math.random();
+    let newValue = {$set: {state: newState}};
+    return new Promise(function (resolve, reject) {
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("displayGroup").updateOne(query, newValue, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve("New State is now set" );
+            })
+            db.close();
+        });
+
+    });
+}
