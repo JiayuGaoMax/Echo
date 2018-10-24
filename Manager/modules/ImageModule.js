@@ -145,7 +145,6 @@ exports.updateDisplayGroupState = function (displayGroupID) {
     });
 }
 
-//To be tested
 queryImageNameByID = function (imageID) {
     return new Promise(function (resolve, reject) {
         let query = {_id: ObjectId(imageID)};

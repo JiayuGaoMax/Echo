@@ -10,7 +10,7 @@ path = require("path");
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
 app.set('view engine', 'pug');
-app.use("/EditDisplay",express.static(path.join(__dirname, "public")));
+app.use("/EditDisplay", express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
 //app.use(express.static("public"));
 //end file uploader config
@@ -18,11 +18,13 @@ app.use("/EditDisplay",express.static(path.join(__dirname, "public")));
 app.get('/EditDisplay', async function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to manage
     let displayGroupName = await dba.queryDisplayGroupNameByID(groupID);
-    let images = await dba.queryAllImages(groupID);
-    console.log(groupID);
+    let images = await dba.queryAllImages(groupID);// We might not need it anymore
+    let imageAndCommand = await dbb.queryAllImageCommand(groupID);
+    console.log(imageAndCommand[0]);//Demo
+    console.log(imageAndCommand[0].imageCommand);//Demo
     res.render('EditDisplay', {
         EditDisplay: 'EditDisplay',
-        images: images,
+        images: images,// Put image and command here view engine will accept that use image.imageCommand to access data in the imageCommand
         groupID: groupID,
         groupName: displayGroupName,
         imagePath: path
