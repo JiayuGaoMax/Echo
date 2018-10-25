@@ -4,7 +4,6 @@ let path = require('path');
 let multer = require('multer');
 let dba = require("../modules/ImageModule.js");
 let dbb = require("../modules/CommandModule.js")
-
 const fs = require("fs");
 
 //file uploader configuration
@@ -51,6 +50,7 @@ app.post("/deleteAllImageHandler", async function (req, res) {
     for (let imageName of allImageName) {
         dbb.deleteCommand(imageName.imageName);//Delete commands before deleting images
         console.log(imageName.imageName);
+        deleteOneImageInFileSystem(imageName.imageName);
     }
     dba.deleteAllImagesInDisplayGroup(groupID);
     dba.updateDisplayGroupState(groupID);//Update display group ID
@@ -61,10 +61,22 @@ app.post("/deleteAllImageHandler", async function (req, res) {
 app.post("/deleteOneImageHandler", async function (req, res) {
     let groupID = req.query.groupID;
     let imageID = req.query.imageID;
-    let imageName= req.query.imageName;
+    let imageName = req.query.imageName;
     console.log(imageID);
     await dba.deleteOneImageInDatabase(imageID);
     dba.updateDisplayGroupState(groupID);//Update display group ID
     dbb.deleteCommand(imageName);// We need to do this to remove the command in the database
+    deleteOneImageInFileSystem(imageName);
     res.redirect("/EditDisplay?groupID=" + groupID);
 });
+
+function deleteOneImageInFileSystem(imageName) {
+    console.log(imageName);
+    fs.unlink("./Manager/public/userUpload/" + imageName, (err) => {
+        if (err) {
+            console.log("failed to delete local image:" + err);
+        } else {
+            console.log('successfully deleted local image');
+        }
+    });
+}

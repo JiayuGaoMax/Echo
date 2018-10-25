@@ -24,7 +24,7 @@ app.get('/EditDisplay', async function (req, res) {
     //console.log(imageAndCommand[0].imageCommand);//Demo
     res.render('EditDisplay', {
         EditDisplay: 'EditDisplay',
-        images: images,// Put image and command here view engine will accept that use image.imageCommand to access data in the imageCommand
+        images: imageAndCommand,// Put image and command here view engine will accept that use image.imageCommand to access data in the imageCommand
         groupID: groupID,
         groupName: displayGroupName,
         imagePath: path
