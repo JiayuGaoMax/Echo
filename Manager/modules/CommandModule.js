@@ -8,10 +8,8 @@ exports.addDefaultCommand = function (imageName) {
     return new Promise(function (resolve, reject) {
         let query = {
             imageName: imageName,
-            hourStart: 0,
-            minuteStart: 0,
-            hourEnd: 23,
-            minuteEnd: 59,
+            timeStart: "00:00",
+            timeEnd: "23:59",
             timeDuration: 3000
         };
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
@@ -85,15 +83,15 @@ exports.queryAllImageCommand = function (groupID) {
                     displayGroupID: groupID
                 }
         }
-              ,
-              {
-                  $lookup: {
-                      from: 'command',
-                      localField: 'imageName',
-                      foreignField: 'imageName',
-                      as: 'imageCommand'
-                  }
-              }];
+            ,
+            {
+                $lookup: {
+                    from: 'command',
+                    localField: 'imageName',
+                    foreignField: 'imageName',
+                    as: 'imageCommand'
+                }
+            }];
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
             let dbo = db.db('Echo');
@@ -120,7 +118,7 @@ exports.updateDisplayGroupStateAfterCommandChange = function (displayGroupID) {
                 if (err)
                     reject(err);
                 else
-                    resolve("New State is now set" );
+                    resolve("New State is now set");
             })
             db.close();
         });

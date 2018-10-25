@@ -13,7 +13,7 @@ let storageConfig = multer.diskStorage({
     },
     filename: function (req, file, callback) {
         if (file.mimetype === 'image/png')//if files is PNG append with .png
-            callback(null, file.fieldname + '-' + Date.now() + '.png');//This is file name was set as file name + current time
+            callback(null, file.fieldname + '-' + Date.now() + "-" + Math.random().toString(36).substring(2, 15) + '.png');//This is file name was set as file name + current time_ a random string
     }
 });
 

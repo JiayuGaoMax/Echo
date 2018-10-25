@@ -11,9 +11,9 @@ app.get("/testCommand", async function (req, res) {
     console.log(result[0].imageCommand);
 })
 
-app.post("CommandHandler", function (req, res) {
-    let imageCommands = Array.prototype.slice.call(req.body.imageCommands);
-    for (let i = 0; i < imageCommands.length; i++) {
-        console.log(imageCommands[i].imageName + imageCommands[i].hourStart);
-    }
+app.post("/CommandHandler", function (req, res) {
+    //let imageCommands = Array.prototype.slice.call(req.body.imageCommands);
+    console.log(req.body.imageStartTime);
+    console.log(req.body.imageDuration);
+    console.log(req.body.imageEndTime)
 })

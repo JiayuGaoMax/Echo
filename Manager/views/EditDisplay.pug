@@ -13,18 +13,19 @@ html(lang='en')
                     input(name="userPhoto" type="file" multiple)
 
 
-            form(action="" method="post" name="updateImageInfo")
+            form(action="/CommandHandler" method="post" name="updateImageInfo")
                 ul(style="list-style-type:none")
                     each image in images
                         li
                             img(src="/userUpload/" + imagePath.basename(image.imagePath) alt=image.imageName style="width:150px;height=150px;")
-                            span Start Time:
-                            input(type="time" name="imageStartTime" value="00:00")
-                            span End Time:
-                            input(type="time" name="imageEndTime" value="23:59")
+                            each command in image.imageCommand
+                                span Start Time:
+                                input(type="time" name="imageStartTime" value=command.timeStart)
+                                span End Time:
+                                input(type="time" name="imageEndTime" value=command.timeEnd)
                             span Duration (seconds):
-                            input(type="number" name="imageDuration" value="0" min="0")
-                            button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id+"&imageName="+imagePath.basename(image.imagePath)) Delete Image
+                            input(type="number" name="imageDuration" value="50" min="0")
+                            button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id + "&imageName=" + imagePath.basename(image.imagePath)) Delete Image
 
                     else
                         li No Images
