@@ -14,6 +14,7 @@ html(lang='en')
 
 
             form(action="/CommandHandler" method="post" name="updateImageInfo")
+                textarea(readonly=true name="displayGroupID")=groupID
                 ul(style="list-style-type:none")
                     each image in images
                         li

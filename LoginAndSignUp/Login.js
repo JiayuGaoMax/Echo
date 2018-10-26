@@ -10,7 +10,7 @@ let session = require('express-session');
 //body parser set up
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true, cookie: {maxAge: 5*60 * 1000}}));//Set Session time 5 minue
+app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true, cookie: {maxAge: 5 * 60 * 1000}}));//Set Session time 5 minue
 
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
@@ -35,11 +35,13 @@ app.post('/LoginHandler', function (req, res) {
             console.log("Manager is login do something here ");
             res.redirect("/ManagerDashboard");//test for session
         } else if (display) {
+            req.session.username = user_name;//test
+            req.session.isLoginedIn = true;//test
             console.log("Display login do something here");
+            res.redirect("/DisplayDashboard");//test for session
         }
         else {
-
-            console.log("Login fail, ");
+            console.log("Login fail, " + manager + display);
             res.redirect("/Login");
         }
     });

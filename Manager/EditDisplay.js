@@ -11,6 +11,7 @@ path = require("path");
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
 app.set('view engine', 'pug');
 app.use("/EditDisplay", express.static(path.join(__dirname, "public")));
+//app.use("/EditDisplay", express.static(path.join("node_modules/viewerjs/dist")));//This is just for testing
 //This must be redeclare for every app
 //app.use(express.static("public"));
 //end file uploader config

@@ -15,9 +15,9 @@ exports.LoginCheck = function (username, password, callback) {
 
         try {
             managerLogin = await queryUser(dbo, queryManager);
-
+            console.log("Manager Login statue is " +managerLogin);
             displayLogin = await queryUser(dbo, queryDisplay);
-
+            console.log("Display Login statue is " +displayLogin);
             callback(err, managerLogin, displayLogin);
 
         } catch (e) {
@@ -31,13 +31,17 @@ exports.LoginCheck = function (username, password, callback) {
 
 function queryUser(dbo, query) {
     return new Promise(function (resolve, reject) {
+        console.log(query);
         dbo.collection("users").find(query).count(function (err, result) {
             if (err) reject(err);
             else if (result > 0) {
                 console.log(result);
                 resolve(true);
             }
-            else reject(false);
+            else {
+                console.log(result);
+                resolve(false);
+            }
         });
     });
 }
