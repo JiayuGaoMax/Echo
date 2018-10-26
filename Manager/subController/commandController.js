@@ -13,7 +13,11 @@ app.get("/testCommand", async function (req, res) {
 
 app.post("/CommandHandler", function (req, res) {
     //let imageCommands = Array.prototype.slice.call(req.body.imageCommands);
+    console.log(req.body.passInImageName);
     console.log(req.body.imageStartTime);
     console.log(req.body.imageDuration);
-    console.log(req.body.imageEndTime)
+    console.log(req.body.imageEndTime);
+    for (let i = 0; i < req.body.passInImageName.length; i++)
+        dba.updateCommand(req.body.passInImageName[i], req.body.imageStartTime[i], req.body.imageEndTime[i]);
+    res.redirect("back");
 })

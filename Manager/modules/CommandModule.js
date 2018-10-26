@@ -30,15 +30,13 @@ exports.addDefaultCommand = function (imageName) {
     })
 }
 //To Be tested
-exports.updateCommand = function (imageName, hourStart, minutesStart, hourEnd, minutesEnd) {
+exports.updateCommand = function (imageName, newTimeStart, newTimeEnd) {
     return new Promise(function (resolve, reject) {
         let query = {imageName: imageName};
         let newValue = {
             $set: {
-                hourStart: hourStart,
-                minuteStart: minutesStart,
-                hourEnd: hourEnd,
-                minutesEnd: minutesEnd
+                timeStart: newTimeStart,
+                timeEnd: newTimeEnd
             }
         };
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
@@ -48,7 +46,7 @@ exports.updateCommand = function (imageName, hourStart, minutesStart, hourEnd, m
                 if (err)
                     reject(err);
                 else
-                    resolve("New State is now set to" + newState);
+                    resolve("New State is now set to");
             })
             db.close();
         });

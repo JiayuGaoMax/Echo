@@ -19,6 +19,7 @@ html(lang='en')
                         li
                             img(src="/userUpload/" + imagePath.basename(image.imagePath) alt=image.imageName style="width:150px;height=150px;")
                             each command in image.imageCommand
+                                textarea(readonly=true name="passInImageName")=image.imageName
                                 span Start Time:
                                 input(type="time" name="imageStartTime" value=command.timeStart)
                                 span End Time:
