@@ -1,0 +1,14 @@
+doctype html
+html(lang='en')
+    head
+        title Manager
+    body
+        div
+            h1 Displays
+            div(style="width:500px; height:500px;border:1px solid grey;")
+                ul(style="list-style-type:none")
+                    each n in displayName
+                        li
+                            a(href="ShowDisplay/?groupID=" + n._id) #{n.displayGroupName}
+                    else
+                        li No Display Groups

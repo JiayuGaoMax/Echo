@@ -24,7 +24,7 @@ exports.queryDisplayGroups = function (queryName) {
 }
 
 exports.addGroup = function (userName, displayGroupName) {
-    let initialState=Math.random();//put a random number in the database to represent state
+    let initialState= Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;//put a random string in the database to represent state
     let query = {username: userName, displayGroupName: displayGroupName,state:initialState};
     return new Promise(function (resolve, reject) {
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {

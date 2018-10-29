@@ -4,6 +4,11 @@ let app = module.exports = express();
 let path = require('path');
 let dba = require("./modules/DisplayDashboard.js");
 let session = require('express-session');
+let DisplayDashboard = require('./DisplayDashboard.js');
+app.use(DisplayDashboard);
+let ShowDisplay= require('./ShowDisplay.js');
+app.use(ShowDisplay);
+
 
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
@@ -12,7 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
 
 //Get Manager request from user render the Manager page
-app.get('/DisplayDashboard', async function (req, res) {
-    console.log("User In the Manager function");
-    res.send(req.session.username + "In Display dashboard");
-});
+//app.get('/DisplayDashboard', async function (req, res) {
+//    console.log("User In the Manager function");
+//    res.send(req.session.username + "In Display dashboard");
+//});
