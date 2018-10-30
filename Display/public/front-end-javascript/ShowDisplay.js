@@ -1,8 +1,10 @@
+var localtState = ""// Local state is recording what is current displayed in image gallery
+
 // View a list of images
 function checkState() {
     var xhttp;
-    currentState = document.getElementById("currentState").innerHTML;
-    displayGroupID = document.getElementById("displayGroupID").innerHTML;
+    let currentState = document.getElementById("currentState").innerHTML;// current State is recording the state of observer
+    let displayGroupID = document.getElementById("displayGroupID").innerHTML;
 
 
     xhttp = new XMLHttpRequest();
@@ -42,6 +44,57 @@ function getImageIndex(image, imagesElements) {
             return index;
 }
 
+function createNewViewer() {
+    var images = document.getElementById("images")//images;
+    var imagesElements = images.getElementsByTagName("img");
+    return new Viewer(images, {
+        inline: false,
+        shown: function () {
+            this.viewer.play();
+            //setInterval(viewer.update(), 60000);//Check if image is in rage every one minute
+        },
+        hidden: function () {
+            this.viewer.destroy();
+        },
+        filter(image) {
+            //console.log(image.alt);
+            //alert("Updated");
+            let currentIndex = getImageIndex(image, imagesElements);
+            let startTime = document.getElementById("commands").getElementsByTagName("textarea")[currentIndex * 3].innerHTML;
+            let endTime = document.getElementById("commands").getElementsByTagName("textarea")[currentIndex * 3 + 1].innerHTML;
+            if (startTime < getCurrentTime() && getCurrentTime() < endTime) {//If current time is in between start and end time then display the image
+                localtState += currentIndex.toString();
+                return true;
+            }
+            else return false;
+        }
+    })
+}
+
+function restartViewer(viewer) {
+    viewer.destroy();
+    viewer = createNewViewer();
+    viewer.show();
+}
+
+function updateInternalState(viewer) {
+    var imageLength = images.getElementsByTagName("img").length;
+    var workingState = "";
+    for (let index = 0; index < imageLength; index++) {
+        let startTime = document.getElementById("commands").getElementsByTagName("textarea")[index * 3].innerHTML;
+        let endTime = document.getElementById("commands").getElementsByTagName("textarea")[index * 3 + 1].innerHTML;
+        if (startTime < getCurrentTime() && getCurrentTime() < endTime) //If current time is in between start and end time then display the image
+            workingState += index.toString();
+    }
+    console.log("Working state "+workingState);
+    console.log("Current  state "+localtState);
+    if (workingState !== localtState) {//if working state not equal to current state then restart the viewer
+        localtState = "";
+        restartViewer(viewer);
+    }
+}
+
+//main function of windows
 window.addEventListener('DOMContentLoaded', function () {
     setInterval(checkState, 5000);//Check the state with server every 5 second
 
@@ -49,30 +102,19 @@ window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('testState').addEventListener('click', function () {
         alert(getCurrentTime())
     });
-    var images = document.getElementById("images")//images;
+
     //document.write(images.length);
     var imagesElements = images.getElementsByTagName("img");
     //console.log(getCurrentTime());//Test get current time in hh:mm format
 
     document.getElementById('button').addEventListener('click', function () {
-        var viewer = new Viewer(images, {
-                inline: false,
-                shown: function () {
-                    viewer.play(true);
-                },
-                filter(image) {
-                    //console.log(image.alt);
-                    let currentIndex = getImageIndex(image, imagesElements);
-                    let startTime = document.getElementById("commands").getElementsByTagName("textarea")[currentIndex * 3].innerHTML;
-                    let endTime = document.getElementById("commands").getElementsByTagName("textarea")[currentIndex * 3 + 1].innerHTML;
-                    if (startTime < getCurrentTime() && getCurrentTime() < endTime)
-                        return true;
-                    else return false;
-                }
-            })
-        ;
-        // image.click();
-        viewer.show();
 
+        var viewer = createNewViewer();
+        viewer.show();
+        alert(localtState);
+        // image.click();
+        setInterval(function () {
+            updateInternalState(viewer)
+        }, 10000)
     });
 });
