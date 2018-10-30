@@ -1,37 +1,55 @@
 doctype html
 html(lang='en')
     head
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css")
         title Sign Up
     body
-        div
-            form(name='SignUpForm', action='SignUpHandler', method ='post' id='SignUpForm')
-                div(class='input')
-                    label(for='username') Username (must be 4 characters long)
+        nav(class="navbar is-primary" role="navigation" aria-label="main navigation")
+            div(class="navbar-brand")
+                a(class="navbar-item" href="#")
+                    img(src="" width="28px" height="28px")
+
+            div(class="navbar-menu")
+                div(class="navbar-start")
+                    a(class="navbar-item" href="#") Home
+
+                div(class="navbar-end")
+                    div(class="navbar-item")
+                        div(class="buttons")
+                            a(class="button is-primary" href="/Login")
+                                strong Login
+
+        div(style="width:375px; height:200px; margin:0 auto; margin-top:50px;")
+            form(name='SignUpForm' action='SignUpHandler' method ='post' id='SignUpForm')
+                div()
+                    label(for='username' class="is-size-5") Username (at least 4 characters long)
                     br
-                    input(type='text' name='username' id='username' autofocus)
+                    input(type='text' name='username' id='username' autofocus class="input is-normal")
                     span(id='usernameError')
-                div(class='input')
-                    label(for='managerPassword') Password (must be 4 character long)
+                div(style="margin-top:16px;")
+                    label(for='managerPassword' class="is-size-5") Password (at least 4 character long)
                     br
-                    input(type='password' name='managerPassword' id='managerPassword')
+                    input(type='password' name='managerPassword' id='managerPassword' class="input is-normal")
                     span(id='managerPasswordError')
-                div(class='input')
-                    label(for='confirmManagerPassword') Confirm Password
+                div(style="margin-top:16px;")
+                    label(for='confirmManagerPassword' class="is-size-5") Confirm Password
                     br
-                    input(type='password' name='confirmManagerPassword' id='confirmManagerPassword')
+                    input(type='password' name='confirmManagerPassword' id='confirmManagerPassword' class="input is-normal")
                     span(id='confirmManagerPasswordError')
-                div(class='input')
-                    label(for='displayPassword') Display Password (This password is used to login to display screen)
+                div(style="margin-top:16px;")
+                    label(for='displayPassword' class="is-size-5") Display Password (login for display screen)
                     br
-                    input(type='password' name='displayPassword' id='displayPassword')
+                    input(type='password' name='displayPassword' id='displayPassword' class="input is-normal")
                     span(id='displayPasswordError')
-                div(class='input')
-                    label(for='confirmDisplayPassword') Confirm Display Password
+                div(style="margin-top:16px;")
+                    label(for='confirmDisplayPassword' class="is-size-5") Confirm Display Password
                     br
-                    input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword')
+                    input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword' class="input is-normal")
                     span(id='confirmDisplayPasswordError')
-                br
-                span(id='formError')
-                input(type='submit' value='Sign Up')
+                div(style="margin-top:16px; text-align:center;")
+                    span(id='formError')
+                    button(type='button' value='Cancel' onclick="window.location.href='/Login'" class="button is-primary is-medium") Cancel
+                    div(style="width:8px; height:auto; display:inline-block;")
+                    input(type='submit' value='Sign Up' class="button is-primary is-medium")
 
         script(type='text/javascript' src='frontend-js/SignUpValidation.js')
