@@ -18,7 +18,7 @@ html(lang='en')
                 ul(style="list-style-type:none")
                     each image in images
                         li
-                            img(src="/userUpload/" + imagePath.basename(image.imagePath) alt=image.imageName style="width:150px;height=150px;")
+                            img(src="/userUpload/" + image.imageName alt=image.imageName style="width:150px;height=150px;")
                             each command in image.imageCommand
                                 textarea(readonly=true name="passInImageName")=image.imageName
                                 span Start Time:

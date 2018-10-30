@@ -1,13 +1,34 @@
 doctype html
 html(lang='en')
     head
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css")
         script(type='text/javascript' src='frontend-js/LoginValidation.js')
         title Login
     body
-        form( name='loginForm',action='LoginHandler',method ='post' onsubmit="return validateForm()")
-            p user name
-            input#username(type='text', name='username' )
-            p password
-            input#password(type='password', name='password' )
-            br
-            input(type='submit' value='Login')
+        nav(class="navbar is-primary" role="navigation" aria-label="main navigation")
+            div(class="navbar-brand")
+                a(class="navbar-item" href="#")
+                    img(src="" width="28px" height="28px")
+
+            div(class="navbar-menu")
+                div(class="navbar-start")
+                    a(class="navbar-item" href="#") Home
+
+                div(class="navbar-end")
+                    div(class="navbar-item")
+                        div(class="buttons")
+                            a(class="button is-primary" href="/SignUp")
+                                strong Sign up
+
+
+        div(style="width:200px; height:200px; position:absolute; top:0; bottom:0; left:0; right:0; margin:auto;")
+            form(name='loginForm' action='LoginHandler' method ='post' onsubmit="return validateForm()")
+                p(class="is-size-4") Username
+                input(type='text' name='username' id="username" class="input is-medium is-primary")
+                p(class="is-size-4") Password
+                input(type='password' name='password' id="password" class="input is-medium is-primary")
+                br
+                div(style="display:flex; align-items:center; justify-content:center; margin-top:8px;")
+                    button(type='button' onclick="window.location.href='/SignUp'" value='Sign Up' class="button is-primary is-medium") Sign Up
+                    div(style="width:8px; height:auto; display:inline-block;")
+                    input(type='submit' value='Login' class="button is-primary is-medium")

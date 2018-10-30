@@ -11,7 +11,7 @@ html(lang='en')
         ul(style="list-style-type:none" id="images")
             each image in images
                 li
-                    img(src="/userUpload/" + imagePath.basename(image.imagePath) alt=image.imageName style="max-width:100%; height:auto")
+                    img(src="/userUpload/" + image.imageName alt=image.imageName style="max-width:100%; height:auto")
         ul(style="list-style-type:none" id="commands")
             each image in images
                 each command in image.imageCommand
