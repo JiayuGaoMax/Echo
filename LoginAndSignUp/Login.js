@@ -10,7 +10,7 @@ let session = require('express-session');
 //body parser set up
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true, cookie: {maxAge: 5 * 60 * 1000}}));//Set Session time 5 minue
+app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true, cookie: {maxAge: 120 * 60 * 1000}}));//Set Session time 5 minue
 
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
