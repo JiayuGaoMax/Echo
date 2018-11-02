@@ -65,7 +65,84 @@ exports.queryDisplayGroupID = function (queryName, displayGroupName) {
     });
 }
 
+exports.deleteGroup = function (userName, displayGroupName) {
+    let query = {username: userName, displayGroupName: displayGroupName};
+    return new Promise(function (resolve, reject) {
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("displayGroup").deleteOne(query, function (err) {
+                if (err)
+                    reject(err);
+                else {
+                    resolve("Delete " + query + " successfully");
+                    db.close();
+                }
+
+            })
+
+        });
+
+    });
 
 
+}
 
+exports.deleteCommand = function (imageName) {
+    return new Promise(function (resolve, reject) {
+        let query = {imageName: imageName};
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("command").deleteOne(query, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve(result.result.n + "command was deleted");
+            })
+            db.close();
+        });
+
+    });
+}
+
+
+exports.deleteAllImagesInDisplayGroup = function (displayGroupID) {
+    return new Promise(function (resolve, reject) {
+        let query = {displayGroupID: displayGroupID};
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db('Echo');
+            dbo.collection('images').deleteMany(query, function (err, result) {
+                if (err) reject(err);
+                else resolve(result.result.n + "Documents was deleted");
+                db.close();
+
+            })
+
+        })
+    })
+};
+
+
+exports.queryAllImageNames = function (displayGroupID) {
+    return new Promise(function (resolve, reject) {
+        let query = {displayGroupID: displayGroupID};
+        let projection = {projection: {_id: 0, imageName: 1}};
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection('images').find(query, projection).toArray(function (err, result) {
+                if (err) reject(err);
+                else {
+                    resolve(result);
+                    db.close();
+                }
+
+            })
+
+        })
+
+    })
+};
 

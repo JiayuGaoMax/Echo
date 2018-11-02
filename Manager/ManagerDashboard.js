@@ -2,6 +2,7 @@ let express = require('express');
 let app = module.exports = express();
 let path = require('path');
 let dba = require("./modules/ManagerDashboard.js");
+let fs = require("fs");
 
 //view engine set up
 app.set('views', path.join(__dirname, 'views'));//Set the view engine path to views
@@ -27,3 +28,30 @@ app.post('/addDisplayGroup', async function (req, res) {
     await dba.addGroup(req.session.username, displayName);
     res.redirect("/ManagerDashboard")
 });
+
+
+///To be tested
+app.get('/deleteDisplayGroup', async function (req, res) {
+    let displayName = req.query.displayName;//Thi field require display name
+    let groupID = req.query.groupID;
+    await dba.deleteGroup(req.session.username, displayName);
+    let allImageName = await dba.queryAllImageNames(groupID);
+    for (let imageName of allImageName) {
+        dba.deleteCommand(imageName.imageName);//Delete commands before deleting images
+        console.log(imageName.imageName);
+        deleteOneImageInFileSystem(imageName.imageName);
+    }
+    dba.deleteAllImagesInDisplayGroup(groupID);
+    res.redirect("/ManagerDashboard")
+});
+
+function deleteOneImageInFileSystem(imageName) {
+    console.log(imageName);
+    fs.unlink("./Manager/public/userUpload/" + imageName, (err) => {
+        if (err) {
+            console.log("failed to delete local image:" + err);
+        } else {
+            console.log('successfully deleted local image');
+        }
+    });
+}
