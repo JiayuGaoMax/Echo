@@ -14,7 +14,14 @@ let storageConfig = multer.diskStorage({
     filename: function (req, file, callback) {
         if (file.mimetype === 'image/png')//if files is PNG append with .png
             callback(null, file.fieldname + '-' + Date.now() + "-" + Math.random().toString(36).substring(2, 15) + '.png');//This is file name was set as file name + current time_ a random string
+        else if (file.mimetype === 'image/jpeg')//if files is PNG append with .png
+            callback(null, file.fieldname + '-' + Date.now() + "-" + Math.random().toString(36).substring(2, 15) + '.jpg');//This is file name was set as file name + current time_ a random string
+        else if (file.mimetype === 'image/bmp')//if files is PNG append with .png
+            callback(null, file.fieldname + '-' + Date.now() + "-" + Math.random().toString(36).substring(2, 15) + '.bmp');//This is file name was set as file name + current time_ a random string
+        else if (file.mimetype === 'image/gif')//if files is PNG append with .png
+            callback(null, file.fieldname + '-' + Date.now() + "-" + Math.random().toString(36).substring(2, 15) + '.gif');//This is file name was set as file name + current time_ a random string
     }
+
 });
 
 let upload = multer({storage: storageConfig}).array("file", 10);
