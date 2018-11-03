@@ -9,6 +9,8 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
 
+app.use("/css", express.static(path.join(__dirname, "../css/"))); //link stylesheet
+
 //Get Manager request from user render the Manager page
 app.get('/ManagerDashboard', async function (req, res) {
     console.log("User In the Manager function");

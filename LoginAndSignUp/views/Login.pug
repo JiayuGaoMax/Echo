@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
     head
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css")
+        link(rel="stylesheet" href="/css/mystyles.css")
         script(type='text/javascript' src='frontend-js/LoginValidation.js')
         title Login
     body
@@ -29,6 +29,6 @@ html(lang='en')
                 input(type='password' name='password' id="password" class="input is-medium is-primary")
                 br
                 div(style="display:flex; align-items:center; justify-content:center; margin-top:8px;")
-                    button(type='button' onclick="window.location.href='/SignUp'" value='Sign Up' class="button is-primary is-medium") Sign Up
-                    div(style="width:8px; height:auto; display:inline-block;")
                     input(type='submit' value='Login' class="button is-primary is-medium")
+                    div(style="width:24px; height:auto; display:inline-block;")
+                    button(type='button' onclick="window.location.href='/SignUp'" value='Sign Up' class="button is-primary is-medium") Sign Up

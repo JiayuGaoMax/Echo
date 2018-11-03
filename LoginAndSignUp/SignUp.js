@@ -15,6 +15,8 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, "public")));
 //This must be redeclare for every app
 
+app.use("/css", express.static(path.join(__dirname, "../css/"))); //link stylesheet
+
 //Get SignUp request from user render the SignUp page
 app.get('/SignUp', function (req, res) {
     console.log("User In the SignUp function");

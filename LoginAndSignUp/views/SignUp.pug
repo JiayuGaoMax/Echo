@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
     head
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css")
+        link(rel="stylesheet" href="/css/mystyles.css")
         title Sign Up
     body
         nav(class="navbar is-primary" role="navigation" aria-label="main navigation")
@@ -24,32 +24,30 @@ html(lang='en')
                 div()
                     label(for='username' class="is-size-5") Username (at least 4 characters long)
                     br
-                    input(type='text' name='username' id='username' autofocus class="input is-normal")
+                    input(type='text' name='username' id='username' autofocus class="input is-normal" style="border-color:darkGrey;")
                     span(id='usernameError')
                 div(style="margin-top:16px;")
                     label(for='managerPassword' class="is-size-5") Password (at least 4 character long)
                     br
-                    input(type='password' name='managerPassword' id='managerPassword' class="input is-normal")
+                    input(type='password' name='managerPassword' id='managerPassword' class="input is-normal" style="border-color:darkGrey;")
                     span(id='managerPasswordError')
                 div(style="margin-top:16px;")
                     label(for='confirmManagerPassword' class="is-size-5") Confirm Password
                     br
-                    input(type='password' name='confirmManagerPassword' id='confirmManagerPassword' class="input is-normal")
+                    input(type='password' name='confirmManagerPassword' id='confirmManagerPassword' class="input is-normal" style="border-color:darkGrey;")
                     span(id='confirmManagerPasswordError')
                 div(style="margin-top:16px;")
                     label(for='displayPassword' class="is-size-5") Display Password (login for display screen)
                     br
-                    input(type='password' name='displayPassword' id='displayPassword' class="input is-normal")
+                    input(type='password' name='displayPassword' id='displayPassword' class="input is-normal" style="border-color:darkGrey;")
                     span(id='displayPasswordError')
                 div(style="margin-top:16px;")
                     label(for='confirmDisplayPassword' class="is-size-5") Confirm Display Password
                     br
-                    input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword' class="input is-normal")
+                    input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword' class="input is-normal" style="border-color:darkGrey;")
                     span(id='confirmDisplayPasswordError')
-                div(style="margin-top:16px; text-align:center;")
+                div(style="margin-top:16px;")
                     span(id='formError')
-                    button(type='button' value='Cancel' onclick="window.location.href='/Login'" class="button is-primary is-medium") Cancel
-                    div(style="width:8px; height:auto; display:inline-block;")
                     input(type='submit' value='Sign Up' class="button is-primary is-medium")
 
         script(type='text/javascript' src='frontend-js/SignUpValidation.js')

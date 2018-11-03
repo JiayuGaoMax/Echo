@@ -23,7 +23,7 @@ function checkTime(i) {
     if (i < 10) {
         i = "0" + i
     }
-    ;  // add zero in front of numbers < 10
+      // add zero in front of numbers < 10
     return i;
 }
 
@@ -45,7 +45,7 @@ function getImageIndex(image, imagesElements) {
 }
 
 function createNewViewer() {
-    var images = document.getElementById("images")//images;
+    var images = document.getElementById("images");//images;
     var imagesElements = images.getElementsByTagName("img");
     return new Viewer(images, {
         inline: false,

@@ -16,6 +16,8 @@ app.use("/EditDisplay", express.static(path.join(__dirname, "public")));
 //app.use(express.static("public"));
 //end file uploader config
 
+app.use("/css", express.static(path.join(__dirname, "../css/"))); //link stylesheet
+
 app.get('/EditDisplay', async function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to manage
     let displayGroupName = await dba.queryDisplayGroupNameByID(groupID);
@@ -27,7 +29,6 @@ app.get('/EditDisplay', async function (req, res) {
         images: imageAndCommand,// Put image and command here view engine will accept that use image.imageCommand to access data in the imageCommand
         groupID: groupID,
         groupName: displayGroupName,
-        imagePath: path
     });
 });
 

@@ -1,14 +1,31 @@
 doctype html
 html(lang='en')
     head
+        link(rel="stylesheet" href="/css/mystyles.css")
         title Manager
     body
-        div
-            h1 Displays
-            div(style="width:500px; height:500px;border:1px solid grey;")
-                ul(style="list-style-type:none")
-                    each n in displayName
-                        li
-                            a(href="ShowDisplay/?groupID=" + n._id) #{n.displayGroupName}
-                    else
-                        li No Display Groups
+        nav(class="navbar is-primary" role="navigation" aria-label="main navigation")
+            div(class="navbar-brand")
+                a(class="navbar-item" href="#")
+                    img(src="" width="28px" height="28px")
+
+            div(class="navbar-menu")
+                div(class="navbar-start")
+                    a(class="navbar-item" href="#") Home
+
+                div(class="navbar-end")
+                    div(class="navbar-item")
+                        div(class="buttons")
+                            a(class="button is-primary" href="/Login")
+                                strong Log Out
+
+        div(style="width:500px; height:500px; margin-left:16px; margin-top:16px;")
+            h1(class="title is-2") Displays
+            div(style="width:500px; border:1px solid grey;")
+                div(style="margin-left:8px; margin-top:8px;")
+                    ul(style="list-style-type:none" class="is-size-5")
+                        each n in displayName
+                            li
+                                a(href="ShowDisplay/?groupID=" + n._id style="margin-left:8px;") #{n.displayGroupName}
+                        else
+                            li No Display Groups
