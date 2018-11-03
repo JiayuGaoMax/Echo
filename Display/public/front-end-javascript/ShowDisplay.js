@@ -11,9 +11,14 @@ function checkState() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             //alert(this.responseText);
-            if (this.responseText == "false")
-                location.reload(true);// If client is different form server then refresh
+            if (this.responseText == "false") {
+                location.reload(true);
+            }// If client is different form server then refresh
+            else if (this.responseText == "Deleted") {
+                window.location.href = "/Login";
+            }
         }
+
     };
     xhttp.open("GET", "/StateCheckHandler?groupID=" + displayGroupID + "&clientCurrentState=" + currentState, true);
     xhttp.send();
@@ -86,8 +91,8 @@ function updateInternalState(viewer) {
         if (startTime < getCurrentTime() && getCurrentTime() < endTime) //If current time is in between start and end time then display the image
             workingState += index.toString();
     }
-    console.log("Working state "+workingState);
-    console.log("Current  state "+localtState);
+    console.log("Working state " + workingState);
+    console.log("Current  state " + localtState);
     if (workingState !== localtState) {//if working state not equal to current state then restart the viewer
         localtState = "";
         restartViewer(viewer);

@@ -25,9 +25,13 @@ app.get("/StateCheckHandler", async function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to Display
     let clientCurrentState = req.query.clientCurrentState;// get the ID of that group to know where to manage
     console.log(groupID + " " + clientCurrentState)
-    let serverCurrentState = await
-        dba.queryCurrentState(groupID);
-    if (clientCurrentState == serverCurrentState)
-        res.send(true);
-    else res.send(false);
+    let isGroupExist = await dba.ifDisplayGroupExist(groupID);
+    if (isGroupExist) {
+        let serverCurrentState = await
+            dba.queryCurrentState(groupID);
+        if (clientCurrentState == serverCurrentState)
+            res.send(true);
+        else res.send(false);
+    }
+    else res.send("Deleted");
 })

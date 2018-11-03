@@ -53,3 +53,27 @@ exports.queryCurrentState = function (displayGroupID) {
 
     })
 };
+
+exports.ifDisplayGroupExist = function (displayGroupID) {
+    return new Promise(function (resolve, reject) {
+        let query = {_id: ObjectId(displayGroupID)};
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection('displayGroup').find(query).count(function (err, result) {
+                if (err) reject(err);
+                else if (result > 0) {
+                    //console.log(result);
+                    resolve(true);
+                }
+                else {
+                    //console.log(result);
+                    resolve(false);
+                }
+
+            })
+
+        })
+
+    })
+}

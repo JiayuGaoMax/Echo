@@ -31,16 +31,16 @@ app.post('/addDisplayGroup', async function (req, res) {
 
 
 ///To be tested
-app.get('/deleteDisplayGroup', async function (req, res) {
+app.get('/deleteDisplayGroupHandler', async function (req, res) {
     let displayName = req.query.displayName;//Thi field require display name
     let groupID = req.query.groupID;
-    await dba.deleteGroup(req.session.username, displayName);
     let allImageName = await dba.queryAllImageNames(groupID);
     for (let imageName of allImageName) {
         dba.deleteCommand(imageName.imageName);//Delete commands before deleting images
         console.log(imageName.imageName);
         deleteOneImageInFileSystem(imageName.imageName);
     }
+    await dba.deleteGroup(req.session.username, displayName);
     dba.deleteAllImagesInDisplayGroup(groupID);
     res.redirect("/ManagerDashboard")
 });
