@@ -4,8 +4,10 @@ Dropzone.options.myAwesomeDropzone = {
     parallelUploads: 10,
     maxFiles: 10,
     init: function () {
-        this.on("success", function (file, response) {
-            location.reload();//reload after success
+        this.on("complete", function (file) {
+            if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                location.reload();
+            }
         });
     }
 };
