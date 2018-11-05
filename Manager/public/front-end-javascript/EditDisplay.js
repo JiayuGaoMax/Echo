@@ -1,6 +1,6 @@
 Dropzone.options.myAwesomeDropzone = {
     paramName: "file", // The name that will be used to transfer the file
-    maxFilesize: 2, // MB
+    maxFilesize: 5, // MB
     parallelUploads: 10,
     maxFiles: 10,
     init: function () {

@@ -65,12 +65,13 @@ exports.ifDisplayGroupExist = function (displayGroupID) {
                 else if (result > 0) {
                     //console.log(result);
                     resolve(true);
+                    db.close();
                 }
                 else {
                     //console.log(result);
                     resolve(false);
+                    db.close();
                 }
-
             })
 
         })
