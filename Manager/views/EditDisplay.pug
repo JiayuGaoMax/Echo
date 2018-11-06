@@ -52,7 +52,7 @@ html(lang='en')
                                             input(type="time" name="imageEndTime" value=command.timeEnd)
                                             br
                                             label(style="margin-right:8px;") Duration (seconds):
-                                            input(type="number" name="imageDuration" value=command.duration min="0")
+                                            input(type="number" name="imageDuration" value=command.timeDuration/1000 min="0")
                         else
                             h1(style="margin: 16px;" class="is-size-5") No Images
                             - buttons = false

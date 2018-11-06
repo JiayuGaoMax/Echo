@@ -21,7 +21,7 @@ app.use("/css", express.static(path.join(__dirname, "../css/"))); //link stylesh
 app.get('/EditDisplay', async function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to manage
     let displayGroupName = await dba.queryDisplayGroupNameByID(groupID);
-    let images = await dba.queryAllImages(groupID);// We might not need it anymore
+    //let images = await dba.queryAllImages(groupID);// We might not need it anymore
     let imageAndCommand = await dbb.queryAllImageCommand(groupID);
 
     res.render('EditDisplay', {

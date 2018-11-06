@@ -19,7 +19,7 @@ app.post("/CommandHandler", function (req, res) {
     console.log(req.body.imageEndTime);
     console.log(req.body.displayGroupID);
     for (let i = 0; i < req.body.passInImageName.length; i++)
-        dba.updateCommand(req.body.passInImageName[i], req.body.imageStartTime[i], req.body.imageEndTime[i]);//Update the command
+        dba.updateCommand(req.body.passInImageName[i], req.body.imageStartTime[i], req.body.imageEndTime[i],req.body.imageDuration[i]);//Update the command
     dba.updateDisplayGroupStateAfterCommandChange(req.body.displayGroupID);///Update display group state
     res.redirect("back");
 })

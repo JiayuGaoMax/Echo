@@ -28,7 +28,7 @@ function checkTime(i) {
     if (i < 10) {
         i = "0" + i
     }
-      // add zero in front of numbers < 10
+    // add zero in front of numbers < 10
     return i;
 }
 
@@ -54,8 +54,10 @@ function createNewViewer() {
     var imagesElements = images.getElementsByTagName("img");
     return new Viewer(images, {
         inline: false,
+        interval:parseInt(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML),
         shown: function () {
-            this.viewer.play();
+            //alert(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML);
+            this.viewer.play(true);
             //setInterval(viewer.update(), 60000);//Check if image is in rage every one minute
         },
         hidden: function () {
@@ -75,6 +77,8 @@ function createNewViewer() {
         }
     })
 }
+
+
 
 function restartViewer(viewer) {
     viewer.destroy();
@@ -102,7 +106,6 @@ function updateInternalState(viewer) {
 //main function of windows
 window.addEventListener('DOMContentLoaded', function () {
     setInterval(checkState, 5000);//Check the state with server every 5 second
-
     //alert(document.getElementById("commands").getElementsByTagName("textarea")[0].innerHTML);
     document.getElementById('testState').addEventListener('click', function () {
         alert(getCurrentTime())
@@ -111,9 +114,9 @@ window.addEventListener('DOMContentLoaded', function () {
     //document.write(images.length);
     var imagesElements = images.getElementsByTagName("img");
     //console.log(getCurrentTime());//Test get current time in hh:mm format
-
+    var viewer = createNewViewer();
+    viewer.show();
     document.getElementById('button').addEventListener('click', function () {
-
         var viewer = createNewViewer();
         viewer.show();
         alert(localtState);

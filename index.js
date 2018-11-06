@@ -8,6 +8,6 @@ let display = require('./Display/DisplayApp.js');
 app.use(display);
 
 app.get('/', function (req, res) {
-    res.send("root dir");
+    res.redirect("/Login");
 });
 app.listen(3000);

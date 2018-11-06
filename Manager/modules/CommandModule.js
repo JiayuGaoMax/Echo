@@ -21,7 +21,7 @@ exports.addDefaultCommand = function (imageName) {
                     resolve("Insert " + query + " successfully");
                     db.close();
                 }
-
+                db.close();
 
             })
 
@@ -30,13 +30,15 @@ exports.addDefaultCommand = function (imageName) {
     })
 }
 //To Be tested
-exports.updateCommand = function (imageName, newTimeStart, newTimeEnd) {
+exports.updateCommand = function (imageName, newTimeStart, newTimeEnd, imageDuration) {
     return new Promise(function (resolve, reject) {
+        let imageDurationMS = imageDuration * 1000;
         let query = {imageName: imageName};
         let newValue = {
             $set: {
                 timeStart: newTimeStart,
-                timeEnd: newTimeEnd
+                timeEnd: newTimeEnd,
+                timeDuration: imageDurationMS
             }
         };
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
@@ -106,7 +108,8 @@ exports.queryAllImageCommand = function (groupID) {
 
 exports.updateDisplayGroupStateAfterCommandChange = function (displayGroupID) {
     let query = {_id: ObjectId(displayGroupID)};
-    let newState = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;
+    let newState = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    ;
     let newValue = {$set: {state: newState}};
     return new Promise(function (resolve, reject) {
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
