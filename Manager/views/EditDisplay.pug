@@ -24,7 +24,7 @@ html(lang='en')
 
         div(style="margin: 16px;")
             h1(class="title is-2") #{groupName}
-            form(action="/upLoadImageHandler?groupID=" + groupID name="userPhoto" method="post" class="dropzone" id="myAwesomeDropzone" enctype="multipart/form-data" onMouseOver="this.style.borderColor='#00aced'" onMouseOut="this.style.borderColor='#ABB7B7'")
+            form(action="/upLoadImageHandler?groupID=" + groupID name="userPhoto" method="post" class="dropzone" id="myAwesomeDropzone" enctype="multipart/form-data" onMouseOver="this.style.borderColor='#14f900'; this.style.borderStyle='solid';" onMouseOut="this.style.borderColor='#00aced'; this.style.borderStyle='dashed';" style="border-color:#00aced; border-style: dotted;border-style:dashed;")
                 div(class="dz-message is-size-5") Drop images here or click to upload.
                 div(class="fallback")
                     input(name="userPhoto" type="file" multiple)
@@ -39,7 +39,7 @@ html(lang='en')
                             div(class="column is-one-quarter")
                                 div(style="border:2px solid darkGrey; margin: 16px;")
                                     figure(class="image" style="text-align:right;")
-                                        button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id + "&imageName=" + image.imageName class="delete is-medium")
+                                        button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id + "&imageName=" + image.imageName class="delete is-medium has-background-danger")
                                         img(src="/userUpload/" + image.imageName alt=image.imageName style="max-width:100%; height:250px;")
                                     br
                                     each command in image.imageCommand

@@ -27,6 +27,7 @@ html(lang='en')
                         ul(style="list-style-type:none" class="is-size-5")
                             each n in displayName
                                 li
+                                    button(type="submit" value="Delete Display Group" formaction="/deleteDisplayGroupHandler?groupID=" + groupID + "&displayName=" + n.displayGroupName class="delete is-small")
                                     a(href="EditDisplay/?groupID="+n._id style="margin-left:8px;") #{n.displayGroupName}
                             else
                                 li No Display Groups

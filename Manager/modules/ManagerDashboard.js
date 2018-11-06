@@ -21,7 +21,7 @@ exports.queryDisplayGroups = function (queryName) {
         });
 
     });
-}
+};
 
 exports.addGroup = function (userName, displayGroupName) {
     let initialState= Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);;//put a random string in the database to represent state
@@ -45,7 +45,7 @@ exports.addGroup = function (userName, displayGroupName) {
     });
 
 
-}
+};
 
 exports.queryDisplayGroupID = function (queryName, displayGroupName) {
     let query = {username: queryName, displayGroupName: displayGroupName};
@@ -58,12 +58,12 @@ exports.queryDisplayGroupID = function (queryName, displayGroupName) {
                     reject(err);
                 else
                     resolve(result._id);
-            })
+            });
             db.close();
         });
 
     });
-}
+};
 
 exports.deleteGroup = function (userName, displayGroupName) {
     let query = {username: userName, displayGroupName: displayGroupName};
@@ -86,7 +86,7 @@ exports.deleteGroup = function (userName, displayGroupName) {
     });
 
 
-}
+};
 
 exports.deleteCommand = function (imageName) {
     return new Promise(function (resolve, reject) {
@@ -99,12 +99,12 @@ exports.deleteCommand = function (imageName) {
                     reject(err);
                 else
                     resolve(result.result.n + "command was deleted");
-            })
+            });
             db.close();
         });
 
     });
-}
+};
 
 
 exports.deleteAllImagesInDisplayGroup = function (displayGroupID) {
