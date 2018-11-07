@@ -2,14 +2,23 @@ doctype html
 html(lang='en')
     head
         link(rel="stylesheet" href="/css/mystyles.css")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+        style @import url('https://fonts.googleapis.com/css?family=Monoton');
+        script(type='text/javascript' src='/css/navMenu.js')
+        script(type='text/javascript' src='/front-end-javascript/ManagerDashboard.js')
         title Manager
     body
         nav(class="navbar is-primary" role="navigation" aria-label="main navigation")
             div(class="navbar-brand")
                 a(class="navbar-item" href="#")
-                    img(src="" width="28px" height="28px")
+                    label(style="font-family:'Monoton';") Echo
 
-            div(class="navbar-menu")
+                a(role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu")
+                    span(aria-hidden="true")
+                    span(aria-hidden="true")
+                    span(aria-hidden="true")
+
+            div(class="navbar-menu" id="navMenu")
                 div(class="navbar-start")
                     a(class="navbar-item" href="#") Home
 
@@ -19,12 +28,18 @@ html(lang='en')
                             a(class="button is-primary" href="/Login")
                                 strong Log Out
 
-        div(style="width:500px; height:500px; margin-left:16px; margin-top:16px;")
+        div(style="width:500px; height:500px; margin:16px;")
             h1(class="title is-2") Displays
+
             form(name='displayForm' action="/addDisplayGroup" method="post")
                 div(style="width:500px; border:1px solid grey;")
-                    div(style="margin-left:8px; margin-top:8px;")
-                        ul(style="list-style-type:none" class="is-size-5")
+                    div(style="margin:8px;")
+                        div(class="field")
+                            p(class="control has-icons-left")
+                                input(type="text" class="input is-normal is-primary" id="myInput" onkeyup="myFunction()" placeholder="Search for display..")
+                                span(class="icon is-small is-left")
+                                    i(class="fa fa-search")
+                        ul(style="list-style-type:none" class="is-size-5" id="myUl")
                             each n in displayName
                                 li
                                     button(type="submit" value="Delete Display Group" formaction="/deleteDisplayGroupHandler?groupID=" + groupID + "&displayName=" + n.displayGroupName class="delete is-small")
