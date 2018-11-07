@@ -8,8 +8,8 @@ html(lang='en')
         script(type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js")
         script(type='text/javascript' src='front-end-javascript/EditDisplay.js')
         title Edit Display
-    body
-        nav(class="navbar is-primary" role="navigation" aria-label="main navigation")
+    body(class="has-navbar-fixed-top")
+        nav(class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation")
             div(class="navbar-brand")
                 a(class="navbar-item" href="#")
                     label(style="font-family:'Monoton';") Echo
@@ -29,7 +29,7 @@ html(lang='en')
                             a(class="button is-primary" href="/Login")
                                 strong Log Out
 
-        div(style="margin: 16px;")
+        div(style="margin:16px;")
             h1(class="title is-2") #{groupName}
             form(action="/upLoadImageHandler?groupID=" + groupID name="userPhoto" method="post" class="dropzone" id="myAwesomeDropzone" enctype="multipart/form-data" onMouseOver="this.style.borderColor='#14f900'; this.style.borderStyle='solid';" onMouseOut="this.style.borderColor='#00aced'; this.style.borderStyle='dashed';" style="border-color:#00aced; border-style: dotted;border-style:dashed;")
                 div(class="dz-message is-size-5") Drop images here or click to upload.
@@ -67,4 +67,4 @@ html(lang='en')
                     -if(buttons)
                             input(type="submit" value="Update All" class="button is-primary is-medium")
                             div(style="width:8px; height:auto; display:inline-block;")
-                            button(type="submit" value="Delete All" class="button is-primary is-medium" formaction="/deleteAllImageHandler?groupID=" + groupID) Delete All
+                            button(type="submit" value="Delete All" class="button is-primary is-medium" formaction="/deleteAllImageHandler?groupID=" + groupID style="position:absolute; top:75px; right:16px;") Delete All Images
