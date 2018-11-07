@@ -39,7 +39,7 @@ html(lang='en')
                                 input(type="text" class="input is-normal is-primary" id="myInput" onkeyup="myFunction()" placeholder="Search for display..")
                                 span(class="icon is-small is-left")
                                     i(class="fa fa-search")
-                        ul(style="list-style-type:none" class="is-size-5" id="myUl")
+                        ul(style="list-style-type:none" class="is-size-5" id="myUL")
                             each n in displayName
                                 li
                                     button(type="submit" value="Delete Display Group" formaction="/deleteDisplayGroupHandler?groupID=" + groupID + "&displayName=" + n.displayGroupName class="delete is-small")
