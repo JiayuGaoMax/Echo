@@ -109,7 +109,6 @@ exports.queryAllImageCommand = function (groupID) {
 exports.updateDisplayGroupStateAfterCommandChange = function (displayGroupID) {
     let query = {_id: ObjectId(displayGroupID)};
     let newState = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    ;
     let newValue = {$set: {state: newState}};
     return new Promise(function (resolve, reject) {
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {

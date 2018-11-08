@@ -44,6 +44,7 @@ app.post('/deleteDisplayGroupHandler', async function (req, res) {
     }
     await dba.deleteGroup(req.session.username, displayName);
     dba.deleteAllImagesInDisplayGroup(groupID);
+    console.log(displayName + " is deleted");
     res.redirect("/ManagerDashboard")
 });
 
