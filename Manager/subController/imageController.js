@@ -59,7 +59,7 @@ app.post("/deleteAllImageHandler", async function (req, res) {
         console.log(imageName.imageName);
         deleteOneImageInFileSystem(imageName.imageName);
     }
-    dba.deleteAllImagesInDisplayGroup(groupID);
+    await dba.deleteAllImagesInDisplayGroup(groupID);
     dba.updateDisplayGroupState(groupID);//Update display group ID
     res.redirect("/EditDisplay?groupID=" + groupID);
 });
