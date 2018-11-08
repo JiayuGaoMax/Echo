@@ -118,8 +118,8 @@ window.addEventListener('DOMContentLoaded', function () {
     viewer.show();
     document.getElementById('button').addEventListener('click', function () {
         var viewer = createNewViewer();
-        viewer.show();
-        alert(localtState);
+        //viewer.show();
+        //alert(localtState);
         // image.click();
         setInterval(function () {
             updateInternalState(viewer)
