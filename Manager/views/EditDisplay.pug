@@ -2,12 +2,14 @@ doctype html
 html(lang='en')
     head
         link(rel="stylesheet" href="/css/mystyles.css")
+        link(rel="stylesheet" href="/front-end-css/imageGallery.css")
         style @import url('https://fonts.googleapis.com/css?family=Monoton');
         script(type='text/javascript' src='/css/navMenu.js')
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css")
         script(type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js")
         script(type='text/javascript' src='front-end-javascript/EditDisplay.js')
         title Edit Display
+
     body(class="has-navbar-fixed-top")
         nav(class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation")
             div(class="navbar-brand")
@@ -39,32 +41,32 @@ html(lang='en')
             div(style="margin-top:16px;")
                 form(action="/CommandHandler" method="post" name="updateImageInfo")
                     textarea(readonly=true name="displayGroupID" hidden)=groupID
-                    div(class="columns is-multiline is-mobile")
-                        - var buttons = false
-                        each image in images
-                            - buttons = true
-                            div(class="column is-one-quarter")
-                                div(style="border:2px solid darkGrey; margin:16px;")
-                                    figure(class="image")
-                                        button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id + "&imageName=" + image.imageName class="delete is-medium has-background-danger" style="position:absolute; top:4px; right:4px;")
-                                        img(src="/userUpload/" + image.imageName alt=image.imageName style="height:280px; max-width:100%;")
-                                    br
-                                    each command in image.imageCommand
-                                        div(style="margin-left:16px; margin-bottom:8px;")
-                                            textarea(readonly=true name="passInImageName" hidden)=image.imageName
-                                            label(style="margin-right:8px;") Start Time:
-                                            input(type="time" name="imageStartTime" value=command.timeStart)
-                                            br
-                                            label(style="margin-right:8px;") End Time:
-                                            input(type="time" name="imageEndTime" value=command.timeEnd)
-                                            br
-                                            label(style="margin-right:8px;") Duration (seconds):
-                                            input(type="number" name="imageDuration" value=command.timeDuration/1000 min="0")
-                        else
-                            h1(style="margin: 16px;" class="is-size-5") No Images
-                            - buttons = false
+                    - var buttons = false
+                    each image in images
+                        - buttons = true
+                        div(class="responsive")
+                            div(class="gallery")
+                                figure(class="image")
+                                    button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id + "&imageName=" + image.imageName class="delete is-medium has-background-danger" style="position:absolute; top:4px; right:4px;")
+                                    img(src="/userUpload/" + image.imageName alt=image.imageName)
+                                br
+                                each command in image.imageCommand
+                                    div(style="margin-left:16px; margin-bottom:8px;")
+                                        textarea(readonly=true name="passInImageName" hidden)=image.imageName
+                                        label(style="margin-right:8px;") Start Time:
+                                        input(type="time" name="imageStartTime" value=command.timeStart)
+                                        br
+                                        label(style="margin-right:8px;") End Time:
+                                        input(type="time" name="imageEndTime" value=command.timeEnd)
+                                        br
+                                        label(style="margin-right:8px;") Duration (seconds):
+                                        input(type="number" name="imageDuration" value=command.timeDuration/1000 min="0")
+                    else
+                        h1(style="margin: 16px;" class="is-size-5") No Images
+                        - buttons = false
+
+                    div(class="clearfix")
 
                     -if(buttons)
-                            input(type="submit" value="Update All" class="button is-primary is-medium")
-                            div(style="width:8px; height:auto; display:inline-block;")
-                            button(type="submit" value="Delete All" class="button is-primary is-medium" formaction="/deleteAllImageHandler?groupID=" + groupID style="position:absolute; top:75px; right:16px;") Delete All Images
+                        input(type="submit" value="Update All" class="button is-primary is-medium")
+                        button(type="submit" value="Delete All" class="button is-primary is-medium" formaction="/deleteAllImageHandler?groupID=" + groupID style="position:absolute; top:75px; right:16px;") Delete All Images
