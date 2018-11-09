@@ -9,7 +9,7 @@ html(lang='en')
         script(type='text/javascript' src='front-end-javascript/ShowDisplay.js')
         title Show Display
     body(class="has-navbar-fixed-top")
-        nav(class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation")
+        nav(class="navbar is-fixed-top is-danger" role="navigation" aria-label="main navigation")
             div(class="navbar-brand")
                 a(class="navbar-item" href="#")
                     label(style="font-family:'Monoton';") Echo
@@ -26,15 +26,15 @@ html(lang='en')
                 div(class="navbar-end")
                     div(class="navbar-item")
                         div(class="buttons")
-                            a(class="button is-primary" href="/Login")
+                            a(class="button is-danger" href="/Login")
                                 strong Log Out
         div(style="margin:16px;")
             textarea(readonly=true name="currentState" id="currentState" hidden=true)=currentState
             textarea(readonly=true name="displayGroupID" id="displayGroupID" hidden=true)=displayGroupID
 
-            button(type="button" class="btn btn-primary button is-primary" id="button")="Play demo"
+            button(type="button" class="btn btn-primary button is-danger" id="button")="Play demo"
             div(style="width:16px; height:auto; display:inline-block;")
-            button(type="button" class="btn btn-primary button is-primary" id="testState")="testState"
+            button(type="button" class="btn btn-primary button is-danger" id="testState")="testState"
 
             ul(style="list-style-type:none float:left; margin-top:16px;" id="images")
                 each image in images
