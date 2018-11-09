@@ -54,11 +54,16 @@ function createNewViewer() {
     var imagesElements = images.getElementsByTagName("img");
     return new Viewer(images, {
         inline: false,
+        initialViewIndex:0,
         interval:parseInt(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML),
         shown: function () {
             //alert(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML);
+            viewer.view(0);
             this.viewer.play(true);
             //setInterval(viewer.update(), 60000);//Check if image is in rage every one minute
+        },
+        viewed(){
+            this.viewer.play(true);
         },
         hidden: function () {
             this.viewer.destroy();
