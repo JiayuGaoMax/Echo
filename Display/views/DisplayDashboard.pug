@@ -3,8 +3,10 @@ html(lang='en')
     head
         link(rel="stylesheet" href="/css/mystyles.css")
         link(rel="stylesheet" href="/front-end-css/displayList.css")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
         style @import url('https://fonts.googleapis.com/css?family=Monoton');
         script(type='text/javascript' src='/css/navMenu.js')
+        script(type='text/javascript' src='front-end-javascript/DisplayDashboard.js')
         title Display Dashboard
     body(class="has-navbar-fixed-top")
         nav(class="navbar is-fixed-top is-danger" role="navigation" aria-label="main navigation")
@@ -30,6 +32,11 @@ html(lang='en')
         div(style="margin:0 auto; width:500px; margin-top:16px;")
             h1(class="title is-2" style="text-align:center;") Displays
             div(style="width:500px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
+                div(class="field")
+                    p(class="control has-icons-left")
+                        input(type="text" class="input is-normal is-primary" id="myInput" onkeyup="myFunction()" placeholder="Search for display.." style="width:468px; margin-left:16px; margin-top:16px; margin-bottom:8px;")
+                        span(class="icon is-small is-left" style="position:absolute; top:16px; left:16px;")
+                            i(class="fa fa-search")
                 ul(style="list-style-type:none" class="is-size-5" id="myUL")
                     each n in displayName
                         li(style="text-align:center;")
