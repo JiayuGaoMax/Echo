@@ -46,33 +46,3 @@ html(lang='en')
                         textarea(readonly=true id="imageStartTime" hidden=true)=command.timeStart
                         textarea(readonly=true id="imageEndTime" hidden=true)=command.timeEnd
                         textarea(readonly=true id="interval" hidden=true)=command.timeDuration
-
-
-
-
-
-
-
-
-
-
-
-        //div
-            textarea(readonly=true name="currentState" id="currentState" hidden=true)=currentState
-            textarea(readonly=true name="displayGroupID" id="displayGroupID" hidden=true)=displayGroupID
-
-            button(type="button" class="btn btn-primary button is-primary is-medium" id="button")="Play demo"
-            div(style="width:16px; height:auto; display:inline-block;")
-            button(type="button" class="btn btn-primary button is-primary is-medium" id="testState")="testState"
-
-            div(class="columns is-multiline is-mobile" id="images")
-                each image in images
-                    div(class="column is-one-quarter")
-                        div(style="width:300px; margin:16px;")
-                            img(src="/userUpload/" + image.imageName alt=image.imageName style="width:100%; height:200px")
-                            br
-                            div(id="commands")
-                                each command in image.imageCommand
-                                    textarea(readonly=true id="imageStartTime")=command.timeStart
-                                    textarea(readonly=true id="imageEndTime")=command.timeEnd
-                                    textarea(readonly=true id="interval")=command.timeDuration
