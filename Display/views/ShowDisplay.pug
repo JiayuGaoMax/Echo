@@ -28,6 +28,9 @@ html(lang='en' style="overflow:hidden;")
                         div(class="buttons")
                             a(class="button is-info" href="/Login")
                                 strong Log Out
+
+
+        h1(class="title is-2") #{displayGroupName}
         div(style="margin:16px;")
             textarea(readonly=true name="currentState" id="currentState" hidden=true)=currentState
             textarea(readonly=true name="displayGroupID" id="displayGroupID" hidden=true)=displayGroupID
@@ -36,6 +39,8 @@ html(lang='en' style="overflow:hidden;")
             div(style="width:16px; height:auto; display:inline-block;")
             button(type="button" class="btn btn-primary button is-info" id="testState")="testState"
 
+            if(image===undefined)
+                p No Images in this display group
             div(style="margin-top:24px; height:700px; width:500px; overflow:auto;")
                 ul(style="list-style-type:none float:left; margin-top:16px;" id="images")
                     each image in images

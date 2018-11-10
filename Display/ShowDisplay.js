@@ -12,12 +12,14 @@ app.get('/ShowDisplay', async function (req, res) {
     let groupID = req.query.groupID;// get the ID of that group to know where to manage
     let imageAndCommand = await dba.queryAllImageCommand(groupID);
     let currentState = await dba.queryCurrentState(groupID);
+    let displayGroupName = await dba.queryDisplayGroupNameByID(groupID);
     res.render('ShowDisplay', {
         displayGroupID: groupID,
         ShowDisplay: 'ShowDisplay',
         images: imageAndCommand,// Put image and command here view engine will accept that use image.imageCommand to access data in the imageCommand
         imagePath: path,
-        currentState: currentState
+        currentState: currentState,
+        displayGroupName:displayGroupName
     });
 });
 

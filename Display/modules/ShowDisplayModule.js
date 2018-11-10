@@ -81,3 +81,21 @@ exports.ifDisplayGroupExist = function (displayGroupID) {
 
     })
 }
+
+exports.queryDisplayGroupNameByID = function (displayGroupID) {
+    let query = {_id: ObjectId(displayGroupID)};
+    return new Promise(function (resolve, reject) {
+        return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
+            if (err) throw err;
+            let dbo = db.db("Echo");
+            dbo.collection("displayGroup").findOne(query, function (err, result) {
+                if (err)
+                    reject(err);
+                else
+                    resolve(result.displayGroupName);
+            });
+            db.close();
+        });
+
+    });
+};
