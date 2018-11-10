@@ -43,7 +43,7 @@ function validateForm(e) {
     } else {
         msg1 = "";
         errmsg.usernameError.style.color = "initial";
-        form.username.style.borderColor = "initial";
+        form.username.style.borderColor = "#00aced";
     }
 
     //check manager password
@@ -62,7 +62,7 @@ function validateForm(e) {
     } else {
         msg2 = "";
         errmsg.managerPasswordError.style.color = "initial";
-        form.managerPassword.style.borderColor = "initial";
+        form.managerPassword.style.borderColor = "#00aced";
     }
 
     if (form.confirmManagerPassword.value === "") {
@@ -72,7 +72,7 @@ function validateForm(e) {
     } else {
         msg3 = "";
         errmsg.confirmManagerPasswordError.style.color = "initial";
-        form.confirmManagerPassword.style.borderColor = "initial";
+        form.confirmManagerPassword.style.borderColor = "#00aced";
     }
 
     //check display password
@@ -91,7 +91,7 @@ function validateForm(e) {
     } else {
         msg4 = "";
         errmsg.displayPasswordError.style.color = "initial";
-        form.displayPassword.style.borderColor = "initial";
+        form.displayPassword.style.borderColor = "#00aced";
     }
 
     if (form.confirmDisplayPassword.value === "") {
@@ -101,7 +101,7 @@ function validateForm(e) {
     } else {
         msg5 = "";
         errmsg.confirmDisplayPasswordError.style.color = "initial";
-        form.confirmDisplayPassword.style.borderColor = "initial";
+        form.confirmDisplayPassword.style.borderColor = "#00aced";
     }
 
     //check if manager password and display password are the same
