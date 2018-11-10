@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en' style="overflow:hidden;")
     head
         link(rel="stylesheet" href="/css/mystyles.css")
         script(type='text/javascript' src='/css/navMenu.js')
@@ -36,13 +36,14 @@ html(lang='en')
             div(style="width:16px; height:auto; display:inline-block;")
             button(type="button" class="btn btn-primary button is-info" id="testState")="testState"
 
-            ul(style="list-style-type:none float:left; margin-top:16px;" id="images")
-                each image in images
-                    li
-                        img(src="/userUpload/" + image.imageName alt=image.imageName style="max-width:100%; height:200px")
-            ul(style="list-style-type:none" id="commands")
-                each image in images
-                    each command in image.imageCommand
-                        textarea(readonly=true id="imageStartTime" hidden=true)=command.timeStart
-                        textarea(readonly=true id="imageEndTime" hidden=true)=command.timeEnd
-                        textarea(readonly=true id="interval" hidden=true)=command.timeDuration
+            div(style="margin-top:24px; height:700px; width:500px; overflow:auto;")
+                ul(style="list-style-type:none float:left; margin-top:16px;" id="images")
+                    each image in images
+                        li
+                            img(src="/userUpload/" + image.imageName alt=image.imageName style="max-width:100%; height:200px")
+                ul(style="list-style-type:none" id="commands")
+                    each image in images
+                        each command in image.imageCommand
+                            textarea(readonly=true id="imageStartTime" hidden=true)=command.timeStart
+                            textarea(readonly=true id="imageEndTime" hidden=true)=command.timeEnd
+                            textarea(readonly=true id="interval" hidden=true)=command.timeDuration
