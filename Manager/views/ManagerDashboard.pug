@@ -6,7 +6,6 @@ html(lang='en')
         link(rel="stylesheet" href="/front-end-css/displayList.css")
         style @import url('https://fonts.googleapis.com/css?family=Monoton');
         script(type='text/javascript' src='/css/navMenu.js')
-        script(type='text/javascript' src='/front-end-javascript/ManagerDashboard.js')
         title Manager
     body(class="has-navbar-fixed-top")
         nav(class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation")
@@ -32,11 +31,11 @@ html(lang='en')
         div(style="margin:0 auto; width:500px; margin-top:16px;")
             h1(class="title is-2" style="text-align:center;") Displays
 
-            form(name='displayForm' action="/addDisplayGroup" method="post")
+            form(name='displayForm' action="/addDisplayGroup" method="post" id='displayForm')
                 div(style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
                     div(class="field")
                         p(class="control has-icons-left")
-                            input(type="text" class="input is-normal is-primary" id="myInput" onkeyup="myFunction()" placeholder="Search for display.." style="width:468px; margin-left:16px; margin-top:16px; margin-bottom:8px;")
+                            input(type="text" class="input is-normal is-primary" id="myInput" placeholder="Search for display.." style="width:468px; margin-left:16px; margin-top:16px; margin-bottom:8px;")
                             span(class="icon is-small is-left" style="position:absolute; top:16px; left:16px;")
                                 i(class="fa fa-search")
                     ul(style="list-style-type:none" class="is-size-5" id="myUL")
@@ -45,9 +44,11 @@ html(lang='en')
                                 a(href="EditDisplay/?groupID="+n._id) #{n.displayGroupName}
                                 button(type="submit" value="Delete Display Group" formaction="/deleteDisplayGroupHandler?groupID=" + n._id + "&displayName=" + n.displayGroupName class="delete is-medium has-background-danger" style="float:right; top:-38px; right:8px;")
                         else
-                            li No Display Groups
+                            li(style="margin:16px;") No Display Groups
 
                 div(style="text-align:right; margin-top:16px;")
-                    input(type="text" name="addDisplay" placeholder="Add Display" id="addDisplay" class="input is-normal is-primary" style="width:250px;")
+                    input(type="text" name="addDisplay" placeholder="Display Name" id="addDisplay" class="input is-normal is-primary" style="width:250px;")
                     div(style="width:8px; height:auto; display:inline-block;")
                     input(type="submit" value="Add Display" class="button is-primary")
+
+        script(type='text/javascript' src='/front-end-javascript/ManagerDashboard.js')
