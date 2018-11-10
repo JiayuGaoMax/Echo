@@ -1,3 +1,7 @@
+/* list filter */
+
+document.getElementById("myInput").addEventListener("keyup", myFunction);
+
 function myFunction() {
     // Declare variables
     var input, filter, ul, li, a, i;
@@ -14,5 +18,20 @@ function myFunction() {
         } else {
             li[i].style.display = "none";
         }
+    }
+}
+
+
+let form = {
+    displayForm: document.getElementById("displayForm"),
+    addDisplay: document.getElementById("addDisplay")
+};
+
+//form submit
+form.displayForm.addEventListener("submit", validateForm);
+
+function validateForm(e) {
+    if (form.addDisplay.value === "") {
+        e.preventDefault();
     }
 }
