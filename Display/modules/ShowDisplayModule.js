@@ -42,6 +42,9 @@ exports.queryCurrentState = function (displayGroupID) {
             let dbo = db.db("Echo");
             dbo.collection('displayGroup').findOne(query, function (err, result) {
                 if (err) reject(err);
+                if (result == null) {
+                    reject(new err("Display group already deleted"));
+                }
                 else {
                     resolve(result.state);
                     db.close();
