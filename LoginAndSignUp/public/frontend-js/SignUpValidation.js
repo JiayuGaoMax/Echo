@@ -37,7 +37,7 @@ function validateForm(e) {
         errmsg.usernameError.style.color = "red";
         form.username.style.borderColor = "red";
     } else if(form.username.value.length < USERNAMELENGTH) {
-        msg1 = " Username must be 6 characters long";
+        msg1 = " Username must be " + USERNAMELENGTH + " characters long";
         errmsg.usernameError.style.color = "red";
         form.username.style.borderColor = "red";
     } else {
@@ -52,7 +52,7 @@ function validateForm(e) {
         errmsg.managerPasswordError.style.color = "red";
         form.managerPassword.style.borderColor = "red";
     } else if(form.managerPassword.value.length < PASSWORDLENGTH) {
-        msg2 = " Password must be 4 characters long";
+        msg2 = " Password must " + PASSWORDLENGTH + " characters long";
         errmsg.managerPasswordError.style.color = "red";
         form.managerPassword.style.borderColor = "red";
     } else if (form.managerPassword.value !== form.confirmManagerPassword.value) {
@@ -81,7 +81,7 @@ function validateForm(e) {
         errmsg.displayPasswordError.style.color = "red";
         form.displayPassword.style.borderColor = "red";
     }  else if(form.displayPassword.value.length < PASSWORDLENGTH) {
-        msg4 = " Display password must be 4 characters long";
+        msg4 = " Display password must be " + PASSWORDLENGTH + " characters long";
         errmsg.displayPasswordError.style.color = "red";
         form.displayPassword.style.borderColor = "red";
     } else if(form.displayPassword.value !== form.confirmDisplayPassword.value) {

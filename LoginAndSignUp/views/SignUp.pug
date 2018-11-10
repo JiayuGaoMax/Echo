@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en' style="background-color: #E0FFFF;")
     head
         link(rel="stylesheet" href="/css/mystyles.css")
         style @import url('https://fonts.googleapis.com/css?family=Monoton');
@@ -26,35 +26,36 @@ html(lang='en')
                             a(class="button is-primary" href="/Login")
                                 strong Login
 
-        div(style="width:375px; height:200px; margin:0 auto; margin-top:50px;")
-            form(name='SignUpForm' action='SignUpHandler' method='post' id='SignUpForm')
-                div()
-                    label(for='username' class="is-size-5") Username (at least 4 characters long)
-                    br
-                    input(type='text' name='username' id='username' autofocus class="input is-normal" style="border-color:darkGrey;")
-                    span(id='usernameError')
-                div(style="margin-top:16px;")
-                    label(for='managerPassword' class="is-size-5") Password (at least 4 character long)
-                    br
-                    input(type='password' name='managerPassword' id='managerPassword' class="input is-normal" style="border-color:darkGrey;")
-                    span(id='managerPasswordError')
-                div(style="margin-top:16px;")
-                    label(for='confirmManagerPassword' class="is-size-5") Confirm Password
-                    br
-                    input(type='password' name='confirmManagerPassword' id='confirmManagerPassword' class="input is-normal" style="border-color:darkGrey;")
-                    span(id='confirmManagerPasswordError')
-                div(style="margin-top:16px;")
-                    label(for='displayPassword' class="is-size-5") Display Password (login for display screen)
-                    br
-                    input(type='password' name='displayPassword' id='displayPassword' class="input is-normal" style="border-color:darkGrey;")
-                    span(id='displayPasswordError')
-                div(style="margin-top:16px;")
-                    label(for='confirmDisplayPassword' class="is-size-5") Confirm Display Password
-                    br
-                    input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword' class="input is-normal" style="border-color:darkGrey;")
-                    span(id='confirmDisplayPasswordError')
-                div(style="margin-top:16px;")
-                    span(id='formError')
-                    input(type='submit' value='Sign Up' class="button is-primary is-medium")
+        div(style="width:405px; margin:0 auto; margin-top:50px; padding-bottom:16px; padding-top:16px; border-radius:8px; background-color:#fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
+            div(style="width:375px; margin:0 auto;")
+                form(name='SignUpForm' action='SignUpHandler' method='post' id='SignUpForm')
+                    div()
+                        label(for='username' class="is-size-5") Username (at least 4 characters long)
+                        br
+                        input(type='text' name='username' id='username' autofocus class="input is-normal" style="border-color:darkGrey;")
+                        span(id='usernameError')
+                    div(style="margin-top:16px;")
+                        label(for='managerPassword' class="is-size-5") Password (at least 4 character long)
+                        br
+                        input(type='password' name='managerPassword' id='managerPassword' class="input is-normal" style="border-color:darkGrey;")
+                        span(id='managerPasswordError')
+                    div(style="margin-top:16px;")
+                        label(for='confirmManagerPassword' class="is-size-5") Confirm Password
+                        br
+                        input(type='password' name='confirmManagerPassword' id='confirmManagerPassword' class="input is-normal" style="border-color:darkGrey;")
+                        span(id='confirmManagerPasswordError')
+                    div(style="margin-top:16px;")
+                        label(for='displayPassword' class="is-size-5") Display Password (login for display screen)
+                        br
+                        input(type='password' name='displayPassword' id='displayPassword' class="input is-normal" style="border-color:darkGrey;")
+                        span(id='displayPasswordError')
+                    div(style="margin-top:16px;")
+                        label(for='confirmDisplayPassword' class="is-size-5") Confirm Display Password
+                        br
+                        input(type='password' name='confirmDisplayPassword' id='confirmDisplayPassword' class="input is-normal" style="border-color:darkGrey;")
+                        span(id='confirmDisplayPasswordError')
+                    div(style="margin-top:16px;")
+                        span(id='formError')
+                        input(type='submit' value='Sign Up' class="button is-primary is-medium")
 
         script(type='text/javascript' src='frontend-js/SignUpValidation.js')

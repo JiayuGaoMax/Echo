@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en' style="background-color: #E0FFFF;")
     head
         link(rel="stylesheet" href="/css/mystyles.css")
         link(rel="stylesheet" href="/front-end-css/imageGallery.css")
@@ -33,7 +33,8 @@ html(lang='en')
 
         div(style="margin:16px;")
             h1(class="title is-2") #{groupName}
-            form(action="/upLoadImageHandler?groupID=" + groupID name="userPhoto" method="post" class="dropzone" id="myAwesomeDropzone" enctype="multipart/form-data" onMouseOver="this.style.borderColor='#14f900'; this.style.borderStyle='solid';" onMouseOut="this.style.borderColor='#00aced'; this.style.borderStyle='dashed';" style="border-color:#00aced; border-style: dotted;border-style:dashed;")
+
+            form(action="/upLoadImageHandler?groupID=" + groupID name="userPhoto" method="post" class="dropzone" id="myAwesomeDropzone" enctype="multipart/form-data" onMouseOver="this.style.borderColor='#14f900'; this.style.borderStyle='solid';" onMouseOut="this.style.borderColor='#00aced'; this.style.borderStyle='dashed';" style="border-color:#00aced; border-style: dotted;border-style:dashed; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
                 div(class="dz-message is-size-5") Drop images here or click to upload.
                 div(class="fallback")
                     input(name="userPhoto" type="file" multiple)
@@ -45,7 +46,7 @@ html(lang='en')
                     each image in images
                         - buttons = true
                         div(class="responsive")
-                            div(class="gallery")
+                            div(class="gallery" style="background-color:#fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);")
                                 figure(class="image")
                                     button(type="submit" value="Delete Image" formaction="/deleteOneImageHandler?groupID=" + groupID + "&imageID=" + image._id + "&imageName=" + image.imageName class="delete is-medium has-background-danger" style="position:absolute; top:4px; right:4px;")
                                     img(src="/userUpload/" + image.imageName alt=image.imageName)
