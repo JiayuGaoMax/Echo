@@ -24,6 +24,11 @@ app.get('/Login', function (req, res) {
     console.log("User In the login function");
     res.render('Login');
 });
+
+
+app.get('/PPT', function (req, res) {
+    res.sendFile("public/slide/index.html", {root: __dirname })
+});
 //Get login post from user and post the request
 app.post('/LoginHandler', function (req, res) {
     let user_name = req.body.username;

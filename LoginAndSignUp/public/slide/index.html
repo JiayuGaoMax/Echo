@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="../PPT/css/reveal.css">
+    <link rel="stylesheet" href="../PPT/css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../PPT/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            Sign up Guide<br>
+            You need one username and two passwords
+        </section>
+        <section>Passwords Explain<br>
+            Password is used to Login as manager, as a manager you can add delete modify image display time<br>
+            Display Password need to be different Password<br>
+            If you login as display you only can play images.<br>
+        </section>
+        <section>New user guide<br>
+            1.SignUp<br>
+            2.Login using password<br>
+            3.Create display group<br>
+            4.Upload few images<br>
+            5.Open up other browser window<br>
+            6.Login as display<br>
+            7.Select created display group to play<br>
+        </section>
+        <section>
+            <section>Are You Ready!!!!!!</section>
+            <section> I have account<br>
+                <a href="http://67.231.24.233:3000/Login">Login</a><br>
+            </section>
+            <section>
+                I don't have account<br>
+                <a href="http://67.231.24.233:3000/SignUp">SignUp</a><br>
+            </section>
+        </section>
+
+
+    </div>
+</div>
+
+<script src="../PPT/lib/js/head.min.js"></script>
+<script src="../PPT/js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
