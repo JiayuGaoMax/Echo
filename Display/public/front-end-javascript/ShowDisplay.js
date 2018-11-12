@@ -52,17 +52,26 @@ function getImageIndex(image, imagesElements) {
 function createNewViewer() {
     var images = document.getElementById("images");//images;
     var imagesElements = images.getElementsByTagName("img");
+
+    let displayTime = 1;
+    if (document.getElementById("commands").getElementsByTagName("textarea")[2] == undefined)
+        displayTime = 1;
+    else displayTime =parseInt(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML);
+
+
+
+
     return new Viewer(images, {
         inline: false,
-        initialViewIndex:0,
-        interval:parseInt(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML),
+        initialViewIndex: 0,
+        interval: displayTime,
         shown: function () {
             //alert(document.getElementById("commands").getElementsByTagName("textarea")[2].innerHTML);
-            viewer.view(0);
-            this.viewer.play(true);
+            this.viewer.view(0);
+            this.viewer.play();
             //setInterval(viewer.update(), 60000);//Check if image is in rage every one minute
         },
-        viewed(){
+        viewed() {
             this.viewer.play(true);
         },
         hidden: function () {
@@ -74,7 +83,7 @@ function createNewViewer() {
             let currentIndex = getImageIndex(image, imagesElements);
             let startTime = document.getElementById("commands").getElementsByTagName("textarea")[currentIndex * 3].innerHTML;
             let endTime = document.getElementById("commands").getElementsByTagName("textarea")[currentIndex * 3 + 1].innerHTML;
-            if (startTime < getCurrentTime() && getCurrentTime() < endTime) {//If current time is in between start and end time then display the image
+            if (startTime <= getCurrentTime() && getCurrentTime() < endTime) {//If current time is in between start and end time then display the image
                 localtState += currentIndex.toString();
                 return true;
             }
@@ -82,7 +91,6 @@ function createNewViewer() {
         }
     })
 }
-
 
 
 function restartViewer(viewer) {
@@ -97,9 +105,10 @@ function updateInternalState(viewer) {
     for (let index = 0; index < imageLength; index++) {
         let startTime = document.getElementById("commands").getElementsByTagName("textarea")[index * 3].innerHTML;
         let endTime = document.getElementById("commands").getElementsByTagName("textarea")[index * 3 + 1].innerHTML;
-        if (startTime < getCurrentTime() && getCurrentTime() < endTime) //If current time is in between start and end time then display the image
+        if (startTime <= getCurrentTime() && getCurrentTime() < endTime) //If current time is in between start and end time then display the image
             workingState += index.toString();
     }
+    console.log(getCurrentTime());
     console.log("Working state " + workingState);
     console.log("Current  state " + localtState);
     if (workingState !== localtState) {//if working state not equal to current state then restart the viewer
@@ -120,9 +129,16 @@ window.addEventListener('DOMContentLoaded', function () {
     var imagesElements = images.getElementsByTagName("img");
     //console.log(getCurrentTime());//Test get current time in hh:mm format
     var viewer = createNewViewer();
+    setInterval(function () {
+        updateInternalState(viewer)
+    }, 10000)
     viewer.show();
+
+
+
     document.getElementById('button').addEventListener('click', function () {
         var viewer = createNewViewer();
+        updateInternalState(viewer);
         //viewer.show();
         //alert(localtState);
         // image.click();

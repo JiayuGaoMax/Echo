@@ -89,8 +89,8 @@ exports.deleteAllImagesInDisplayGroup = function (displayGroupID) {
 exports.deleteOneImageInDatabase = function (imageID) {
     return new Promise(async function (resolve, reject) {
         //query image name, delete command then delete image
-        let imageId = await queryImageNameByID(imageID);
-        cmdModule.deleteCommand(imageId);
+        //let imageId = await queryImageNameByID(imageID);
+        //cmdModule.deleteCommand(imageId);
         let query = {_id: ObjectId(imageID)};
         return MongoClient.connect(url, {useNewUrlParser: true}, function (err, db) {
             if (err) throw err;
@@ -144,7 +144,7 @@ exports.updateDisplayGroupState = function (displayGroupID) {
 
     });
 }
-
+/*
 queryImageNameByID = function (imageID) {
     return new Promise(function (resolve, reject) {
         let query = {_id: ObjectId(imageID)};
@@ -161,3 +161,4 @@ queryImageNameByID = function (imageID) {
         })
     })
 };
+*/
