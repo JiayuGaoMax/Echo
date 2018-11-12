@@ -33,7 +33,7 @@ app.post('/addDisplayGroup', async function (req, res) {
 
 
 ///To be tested
-app.post('/deleteDisplayGroupHandler', async function (req, res) {
+app.get('/deleteDisplayGroupHandler', async function (req, res) {
     let displayName = req.query.displayName;//Thi field require display name
     let groupID = req.query.groupID;
     let allImageName = await dba.queryAllImageNames(groupID);
