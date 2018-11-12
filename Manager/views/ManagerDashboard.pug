@@ -42,7 +42,7 @@ html(lang='en' style="background-color: #E0FFFF")
                         each n in displayName
                             li
                                 a(href="EditDisplay?groupID="+n._id) #{n.displayGroupName}
-                                button(type="submit" value="Delete Display Group" formaction="/deleteDisplayGroupHandler?groupID=" + n._id + "&displayName=" + n.displayGroupName class="delete is-medium has-background-danger" style="float:right; top:-38px; right:8px;")
+                                button(type="button" value="Delete Display Group" onclick="window.location.href='/deleteDisplayGroupHandler?groupID=" + n._id + "&displayName=" + n.displayGroupName + "'" class="delete is-medium has-background-danger" style="float:right; top:-38px; right:8px;")
                         else
                             li(style="margin:16px;") No Display Groups
 
