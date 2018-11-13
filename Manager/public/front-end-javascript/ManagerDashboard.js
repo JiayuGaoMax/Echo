@@ -27,11 +27,30 @@ let form = {
     addDisplay: document.getElementById("addDisplay")
 };
 
+let errmsg = {
+    addDisplayErr: document.getElementById("addDisplayErr")
+};
+
 //form submit
 form.displayForm.addEventListener("submit", validateForm);
 
 function validateForm(e) {
+
+    let msg1 = "";
+
     if (form.addDisplay.value === "") {
+        msg1 = "Display name cannot be blank";
+        errmsg.addDisplayErr.style.color = "red";
+    } else {
+        msg1 = "";
+        errmsg.addDisplayErr.style.color = "initial";
+    }
+
+    if(msg1 !== "") {
+        errmsg.addDisplayErr.innerHTML = msg1;
+
         e.preventDefault();
+    } else {
+        errmsg.addDisplayErr.innerHTML = msg1;
     }
 }
