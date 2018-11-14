@@ -1,0 +1,31 @@
+/* https://www.w3schools.com/css/css_image_gallery.asp */
+
+div.gallery {
+    border: 1px solid #ccc;
+    margin-bottom: 16px;
+    float: left;
+    width: 350px;
+    margin-left: 12px;
+}
+
+div.gallery:hover {
+    border: 1px solid #00aced;
+}
+
+div.gallery img {
+    width: auto;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.desc {
+    padding: 8px;
+    text-align: center;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
