@@ -52,16 +52,18 @@ html(lang='en' style="background-color: #E0FFFF;")
                                     img(src="/userUpload/" + image.imageName alt=image.imageName)
                                 br
                                 each command in image.imageCommand
-                                    div(style="margin-left:16px; margin-bottom:8px;")
+                                    div(class="desc")
                                         textarea(readonly=true name="passInImageName" hidden)=image.imageName
-                                        label(style="margin-right:8px;") Start Time:
+                                        label(style="margin-right:2px;") Start Time:
                                         input(type="time" name="imageStartTime" value=command.timeStart)
                                         br
-                                        label(style="margin-right:8px;") End Time:
+                                        div(style="margin-top:4px;")
+                                        label(style="margin-right:2px;") End Time:
                                         input(type="time" name="imageEndTime" value=command.timeEnd)
                                         br
-                                        label(style="margin-right:8px;") Duration (seconds):
-                                        input(type="number" name="imageDuration" value=command.timeDuration/1000 min="0")
+                                        div(style="margin-top:4px;")
+                                            label(style="margin-right:2px; margin-top:4px;") Duration (seconds):
+                                            input(type="number" name="imageDuration" value=command.timeDuration/1000 min="0" style="width:56px;")
                     else
                         h1(style="margin: 16px;" class="is-size-5") No Images
                         - buttons = false
