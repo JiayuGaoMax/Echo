@@ -3,9 +3,9 @@ Dropzone.options.myAwesomeDropzone = {
     maxFilesize: 5, // MB
     parallelUploads: 10,
     maxFiles: 10,
-    acceptedFiles:"image/jpeg,image/png,image/bmp,image/gif",
+    acceptedFiles: "image/jpeg,image/png,image/bmp,image/gif",
     init: function () {
-        this.on("complete", function (file) {
+        this.on("queuecomplete", function () {
             if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
                 location.reload();
             }
